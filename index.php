@@ -16,6 +16,9 @@ try {
             $homeController->showHome();
             break;
         case 'books':
+            $bookController = new BookController();
+            $bookController->showBooks();
+            break;
 
         default:
             throw new Exception("La page demandée n'existe pas.");

@@ -22,7 +22,7 @@ services:
       - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
       - ./database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql
     ports:
-      - "${DB_PORT}:3306"
+      - "${DB_HOST_PORT:-3307}:3306"
 
 volumes:
   database_data:

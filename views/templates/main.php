@@ -12,7 +12,7 @@
 
         <nav class="flex gap-6">
             <a href="index.php?action=home">Accueil</a>
-            <a href="#">Nos livres à l'échange</a>
+            <a href="index.php?action=books">Nos livres à l'échange</a>
             <a href="#">Messagerie</a>
             <a href="#">Mon compte</a>
             <a href="#">Connexion</a>

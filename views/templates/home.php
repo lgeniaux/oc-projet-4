@@ -58,7 +58,7 @@
         <?php endif; ?>
 
         <div class="mt-10 text-center">
-            <a class="rounded bg-green-600 px-6 py-3 text-white" href="#">
+            <a class="rounded bg-green-600 px-6 py-3 text-white" href="index.php?action=books">
                 Voir tous les livres
             </a>
         </div>
