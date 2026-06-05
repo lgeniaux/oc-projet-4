@@ -4,7 +4,6 @@ spl_autoload_register(function (string $className) {
     $folders = [
         'controllers/',
         'models/',
-        'services/',
         'views/',
     ];
 

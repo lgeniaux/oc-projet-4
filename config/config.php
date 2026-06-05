@@ -3,7 +3,7 @@
 // Chemin absolu vers la racine du projet.
 define('ROOT_PATH', dirname(__DIR__) . '/');
 
-// Chargement simple du fichier .env local.
+// Chargement simple du fichier .env, a voir si on peut faire mieux sans lib externe (demander a Kevin)
 $envPath = ROOT_PATH . '.env';
 
 if (file_exists($envPath)) {
@@ -28,8 +28,6 @@ if (file_exists($envPath)) {
     }
 }
 
-// Chemin vers le dossier qui contient les vues.
 define('TEMPLATE_VIEW_PATH', ROOT_PATH . 'views/templates/');
 
-// Chemin vers le template principal du site.
 define('MAIN_VIEW_PATH', TEMPLATE_VIEW_PATH . 'main.php');

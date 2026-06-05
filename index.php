@@ -15,6 +15,7 @@ try {
             $homeController = new HomeController();
             $homeController->showHome();
             break;
+        case 'books':
 
         default:
             throw new Exception("La page demandée n'existe pas.");
