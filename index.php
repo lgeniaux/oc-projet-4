@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once 'config/config.php';
 require_once 'config/autoload.php';
 
@@ -22,6 +24,18 @@ try {
         case 'book':
             $bookController = new BookController();
             $bookController->showBook();
+            break;
+        case 'login':
+            $authController = new AuthController();
+            $authController->login();
+            break;
+        case 'logout':
+            $authController = new AuthController();
+            $authController->logout();
+            break;
+        case 'protected-test':
+            $authController = new AuthController();
+            $authController->protectedTest();
             break;
 
         default:

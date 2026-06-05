@@ -51,8 +51,9 @@ class BookManager
                 ORDER BY books.created_at DESC, books.id DESC';
 
         $query = $this->db->prepare($sql);
-        $query->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
-        $query->execute();
+        $query->execute([
+            'search' => '%' . $search . '%',
+        ]);
 
         return $this->createBooks($query->fetchAll());
     }
@@ -66,8 +67,9 @@ class BookManager
                 WHERE books.id = :id';
 
         $query = $this->db->prepare($sql);
-        $query->bindValue(':id', $id, PDO::PARAM_INT);
-        $query->execute();
+        $query->execute([
+            'id' => $id,
+        ]);
 
         $bookData = $query->fetch();
 

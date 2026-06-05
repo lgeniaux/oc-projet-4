@@ -15,7 +15,11 @@
             <a href="index.php?action=books">Nos livres à l'échange</a>
             <a href="#">Messagerie</a>
             <a href="#">Mon compte</a>
-            <a href="#">Connexion</a>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <a href="index.php?action=logout">Déconnexion</a>
+            <?php else: ?>
+                <a href="index.php?action=login">Connexion</a>
+            <?php endif; ?>
         </nav>
     </header>
 
