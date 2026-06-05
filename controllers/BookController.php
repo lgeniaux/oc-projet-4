@@ -20,4 +20,25 @@ class BookController
             'search' => $search,
         ]);
     }
+
+    public function showBook(): void
+    {
+        $id = (int) ($_GET['id'] ?? 0);
+
+        if ($id <= 0) {
+            throw new Exception("Le livre demandé n'existe pas.");
+        }
+
+        $bookManager = new BookManager();
+        $book = $bookManager->findBookById($id);
+
+        if ($book === null) {
+            throw new Exception("Le livre demandé n'existe pas.");
+        }
+
+        $view = new View($book->getTitle());
+        $view->render('book', [
+            'book' => $book,
+        ]);
+    }
 }

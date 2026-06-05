@@ -27,9 +27,10 @@
                 $bookAuthor = htmlspecialchars($book->getAuthor(), ENT_QUOTES, 'UTF-8');
                 $ownerUsername = htmlspecialchars($book->getOwnerUsername(), ENT_QUOTES, 'UTF-8');
                 $bookImage = trim((string) $book->getImage());
+                $bookUrl = 'index.php?action=book&id=' . $book->getId();
                 ?>
 
-                <article class="bg-white">
+                <a class="block bg-white" href="<?= $bookUrl ?>">
                     <?php if ($bookImage !== ''): ?>
                         <img
                             class="h-56 w-full object-cover"
@@ -43,7 +44,7 @@
                         <p class="text-sm text-stone-500"><?= $bookAuthor ?></p>
                         <p class="mt-4 text-xs text-stone-400">Vendu par : <?= $ownerUsername ?></p>
                     </div>
-                </article>
+                </a>
             <?php endforeach; ?>
         </div>
     <?php endif; ?>

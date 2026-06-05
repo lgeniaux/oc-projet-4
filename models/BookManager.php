@@ -57,23 +57,49 @@ class BookManager
         return $this->createBooks($query->fetchAll());
     }
 
+    public function findBookById(int $id): ?Book
+    {
+        $sql = 'SELECT books.id, books.user_id, books.title, books.author, books.image,
+                       books.description, books.status, users.username AS owner_username
+                FROM books
+                INNER JOIN users ON books.user_id = users.id
+                WHERE books.id = :id';
+
+        $query = $this->db->prepare($sql);
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+
+        $bookData = $query->fetch();
+
+        if (!$bookData) {
+            return null;
+        }
+
+        return $this->createBook($bookData);
+    }
+
     private function createBooks(array $booksData): array
     {
         $books = [];
 
         foreach ($booksData as $bookData) {
-            $books[] = new Book(
-                (int) $bookData['id'],
-                (int) $bookData['user_id'],
-                $bookData['title'],
-                $bookData['author'],
-                $bookData['image'],
-                $bookData['description'],
-                $bookData['status'],
-                $bookData['owner_username']
-            );
+            $books[] = $this->createBook($bookData);
         }
 
         return $books;
+    }
+
+    private function createBook(array $bookData): Book
+    {
+        return new Book(
+            (int) $bookData['id'],
+            (int) $bookData['user_id'],
+            $bookData['title'],
+            $bookData['author'],
+            $bookData['image'],
+            $bookData['description'],
+            $bookData['status'],
+            $bookData['owner_username']
+        );
     }
 }
