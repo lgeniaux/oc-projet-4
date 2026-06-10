@@ -11,16 +11,12 @@ class AuthController
             $email = trim($_POST['email'] ?? '');
             $password = $_POST['password'] ?? '';
 
-            $userManager = new UserManager();
-            $user = $userManager->findUserByEmail($email);
+            $error = AuthService::login($email, $password);
 
-            if ($user !== null && password_verify($password, $user->getPasswordHash())) {
-                $_SESSION['user_id'] = $user->getId();
+            if ($error === null) {
                 header('Location: index.php?action=home');
                 exit;
             }
-
-            $error = 'Email ou mot de passe incorrect.';
         }
 
         $view = new View('Connexion');
@@ -41,21 +37,9 @@ class AuthController
             $email = trim($_POST['email'] ?? '');
             $password = $_POST['password'] ?? '';
 
-            $userManager = new UserManager();
+            $error = AuthService::register($username, $email, $password);
 
-            if ($username === '' || $email === '' || $password === '') {
-                $error = 'Tous les champs sont obligatoires.';
-            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $error = 'Adresse email invalide.';
-            } elseif ($userManager->findUserByEmail($email) !== null) {
-                $error = 'Cette adresse email est déjà utilisée.';
-            } elseif ($userManager->findUserByUsername($username) !== null) {
-                $error = 'Ce pseudo est déjà utilisé.';
-            } else {
-                $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                $userId = $userManager->createUser($username, $email, $passwordHash);
-
-                $_SESSION['user_id'] = $userId;
+            if ($error === null) {
                 header('Location: index.php?action=home');
                 exit;
             }
@@ -78,10 +62,7 @@ class AuthController
 
     public function protectedTest(): void
     {
-        if (!isset($_SESSION['user_id'])) {
-            header('Location: index.php?action=login');
-            exit;
-        }
+        AuthService::requireAuth();
 
         $view = new View('Page protégée');
         $view->render('protected-test');
