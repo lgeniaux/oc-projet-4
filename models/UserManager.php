@@ -26,7 +26,27 @@ class UserManager
             return null;
         }
 
-        return $this->createUser($userData);
+        return $this->createUserFromData($userData);
+    }
+
+    public function findUserByUsername(string $username): ?User
+    {
+        $sql = 'SELECT id, username, email, password_hash, profile_image, biography
+                FROM users
+                WHERE username = :username';
+
+        $query = $this->db->prepare($sql);
+        $query->execute([
+            'username' => $username,
+        ]);
+
+        $userData = $query->fetch();
+
+        if (!$userData) {
+            return null;
+        }
+
+        return $this->createUserFromData($userData);
     }
 
     public function findUserById(int $id): ?User
@@ -46,10 +66,25 @@ class UserManager
             return null;
         }
 
-        return $this->createUser($userData);
+        return $this->createUserFromData($userData);
     }
 
-    private function createUser(array $userData): User
+    public function createUser(string $username, string $email, string $passwordHash): int
+    {
+        $sql = 'INSERT INTO users (username, email, password_hash)
+                VALUES (:username, :email, :password_hash)';
+
+        $query = $this->db->prepare($sql);
+        $query->execute([
+            'username' => $username,
+            'email' => $email,
+            'password_hash' => $passwordHash,
+        ]);
+
+        return (int) $this->db->lastInsertId();
+    }
+
+    private function createUserFromData(array $userData): User
     {
         return new User(
             (int) $userData['id'],

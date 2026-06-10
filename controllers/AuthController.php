@@ -30,6 +30,45 @@ class AuthController
         ]);
     }
 
+    public function register(): void
+    {
+        $error = null;
+        $username = '';
+        $email = '';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $username = trim($_POST['username'] ?? '');
+            $email = trim($_POST['email'] ?? '');
+            $password = $_POST['password'] ?? '';
+
+            $userManager = new UserManager();
+
+            if ($username === '' || $email === '' || $password === '') {
+                $error = 'Tous les champs sont obligatoires.';
+            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $error = 'Adresse email invalide.';
+            } elseif ($userManager->findUserByEmail($email) !== null) {
+                $error = 'Cette adresse email est déjà utilisée.';
+            } elseif ($userManager->findUserByUsername($username) !== null) {
+                $error = 'Ce pseudo est déjà utilisé.';
+            } else {
+                $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+                $userId = $userManager->createUser($username, $email, $passwordHash);
+
+                $_SESSION['user_id'] = $userId;
+                header('Location: index.php?action=home');
+                exit;
+            }
+        }
+
+        $view = new View('Inscription');
+        $view->render('register', [
+            'error' => $error,
+            'username' => $username,
+            'email' => $email,
+        ]);
+    }
+
     public function logout(): void
     {
         session_destroy();

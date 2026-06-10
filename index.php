@@ -29,6 +29,10 @@ try {
             $authController = new AuthController();
             $authController->login();
             break;
+        case 'register':
+            $authController = new AuthController();
+            $authController->register();
+            break;
         case 'logout':
             $authController = new AuthController();
             $authController->logout();
