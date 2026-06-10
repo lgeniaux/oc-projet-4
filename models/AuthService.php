@@ -4,6 +4,8 @@ class AuthService
 {
     public static function login(string $email, string $password): ?string
     {
+        $email = trim($email);
+
         if ($email === '' || $password === '') {
             return 'Email et mot de passe sont obligatoires.';
         }
@@ -23,6 +25,9 @@ class AuthService
 
     public static function register(string $username, string $email, string $password): ?string
     {
+        $username = trim($username);
+        $email = trim($email);
+
         if ($username === '' || $email === '' || $password === '') {
             return 'Tous les champs sont obligatoires.';
         }
