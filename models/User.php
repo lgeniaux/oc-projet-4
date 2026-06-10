@@ -8,6 +8,7 @@ class User
     private string $passwordHash;
     private ?string $profileImage;
     private ?string $biography;
+    private string $createdAt;
 
     public function __construct(
         int $id,
@@ -15,7 +16,8 @@ class User
         string $email,
         string $passwordHash,
         ?string $profileImage,
-        ?string $biography
+        ?string $biography,
+        string $createdAt
     ) {
         $this->id = $id;
         $this->username = $username;
@@ -23,6 +25,7 @@ class User
         $this->passwordHash = $passwordHash;
         $this->profileImage = $profileImage;
         $this->biography = $biography;
+        $this->createdAt = $createdAt;
     }
 
     public function getId(): int
@@ -53,5 +56,10 @@ class User
     public function getBiography(): ?string
     {
         return $this->biography;
+    }
+
+    public function getCreatedAt(): string
+    {
+        return $this->createdAt;
     }
 }

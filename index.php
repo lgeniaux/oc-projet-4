@@ -25,6 +25,10 @@ try {
             $bookController = new BookController();
             $bookController->showBook();
             break;
+        case 'profile':
+            $userController = new UserController();
+            $userController->showProfile();
+            break;
         case 'login':
             $authController = new AuthController();
             $authController->login();

@@ -80,6 +80,35 @@ class BookManager
         return $this->createBook($bookData);
     }
 
+    public function findBooksByUserId(int $userId): array
+    {
+        $sql = 'SELECT books.id, books.user_id, books.title, books.author, books.image,
+                       books.description, books.status, users.username AS owner_username
+                FROM books
+                INNER JOIN users ON books.user_id = users.id
+                WHERE books.user_id = :user_id
+                ORDER BY books.created_at DESC, books.id DESC';
+
+        $query = $this->db->prepare($sql);
+        $query->execute([
+            'user_id' => $userId,
+        ]);
+
+        return $this->createBooks($query->fetchAll());
+    }
+
+    public function countBooksByUserId(int $userId): int
+    {
+        $sql = 'SELECT COUNT(*) FROM books WHERE user_id = :user_id';
+
+        $query = $this->db->prepare($sql);
+        $query->execute([
+            'user_id' => $userId,
+        ]);
+
+        return (int) $query->fetchColumn();
+    }
+
     private function createBooks(array $booksData): array
     {
         $books = [];

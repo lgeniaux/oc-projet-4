@@ -11,7 +11,7 @@ class UserManager
 
     public function findUserByEmail(string $email): ?User
     {
-        $sql = 'SELECT id, username, email, password_hash, profile_image, biography
+        $sql = 'SELECT id, username, email, password_hash, profile_image, biography, created_at
                 FROM users
                 WHERE email = :email';
 
@@ -31,7 +31,7 @@ class UserManager
 
     public function findUserByUsername(string $username): ?User
     {
-        $sql = 'SELECT id, username, email, password_hash, profile_image, biography
+        $sql = 'SELECT id, username, email, password_hash, profile_image, biography, created_at
                 FROM users
                 WHERE username = :username';
 
@@ -51,7 +51,7 @@ class UserManager
 
     public function findUserById(int $id): ?User
     {
-        $sql = 'SELECT id, username, email, password_hash, profile_image, biography
+        $sql = 'SELECT id, username, email, password_hash, profile_image, biography, created_at
                 FROM users
                 WHERE id = :id';
 
@@ -92,7 +92,8 @@ class UserManager
             $userData['email'],
             $userData['password_hash'],
             $userData['profile_image'],
-            $userData['biography']
+            $userData['biography'],
+            $userData['created_at']
         );
     }
 }
