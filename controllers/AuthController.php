@@ -2,7 +2,7 @@
 
 class AuthController
 {
-    public function login(): void
+    public function showLogin(): void
     {
         $error = null;
         $email = '';
@@ -30,7 +30,7 @@ class AuthController
         ]);
     }
 
-    public function register(): void
+    public function showRegister(): void
     {
         $error = null;
         $username = '';

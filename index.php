@@ -29,17 +29,21 @@ try {
             $userController = new UserController();
             $userController->showProfile();
             break;
+        case 'myprofile':
+            $userController = new UserController();
+            $userController->showMyProfile();
+            break;
         case 'delete-book':
             $bookController = new BookController();
             $bookController->deleteBook();
             break;
         case 'login':
             $authController = new AuthController();
-            $authController->login();
+            $authController->showLogin();
             break;
         case 'register':
             $authController = new AuthController();
-            $authController->register();
+            $authController->showRegister();
             break;
         case 'logout':
             $authController = new AuthController();

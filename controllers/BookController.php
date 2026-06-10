@@ -59,9 +59,7 @@ class BookController
             throw new Exception("Le livre demandé n'existe pas.");
         }
 
-        if ($book->getUserId() !== (int) $_SESSION['user_id']) {
-            throw new Exception("Vous n'avez pas le droit de supprimer ce livre.");
-        }
+        AuthService::requireBookOwner($book);
 
         $bookManager->deleteBook($id);
 

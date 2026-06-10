@@ -17,10 +17,12 @@ class BookManager
                 INNER JOIN users ON books.user_id = users.id
                 WHERE books.status = "available"
                 ORDER BY books.created_at DESC, books.id DESC
-                LIMIT ' . $limit;
+                LIMIT :limit';
 
         $query = $this->db->prepare($sql);
-        $query->execute();
+        $query->execute([
+            'limit' => $limit,
+        ]);
 
         return $this->createBooks($query->fetchAll());
     }
