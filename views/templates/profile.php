@@ -1,5 +1,5 @@
 <?php
-$username = htmlspecialchars($profileUser->getUsername(), ENT_QUOTES, 'UTF-8');
+$username = Utils::safe($profileUser->getUsername());
 $profileImage = trim((string) $profileUser->getProfileImage());
 
 $createdAt = new DateTime($profileUser->getCreatedAt());
@@ -16,7 +16,7 @@ $messageUrl = 'index.php?action=messages&user=' . $profileUser->getId();
             <?php if ($profileImage !== ''): ?>
                 <img
                     class="mb-8 h-40 w-40 rounded-full object-cover"
-                    src="<?= htmlspecialchars($profileImage, ENT_QUOTES, 'UTF-8') ?>"
+                    src="<?= Utils::safe($profileImage) ?>"
                     alt="Photo de profil de <?= $username ?>"
                 >
             <?php else: ?>
@@ -68,9 +68,9 @@ $messageUrl = 'index.php?action=messages&user=' . $profileUser->getId();
                     <?php else: ?>
                         <?php foreach ($books as $index => $book): ?>
                             <?php
-                            $bookTitle = htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8');
-                            $bookAuthor = htmlspecialchars($book->getAuthor(), ENT_QUOTES, 'UTF-8');
-                            $bookDescription = htmlspecialchars((string) $book->getDescription(), ENT_QUOTES, 'UTF-8');
+                            $bookTitle = Utils::safe($book->getTitle());
+                            $bookAuthor = Utils::safe($book->getAuthor());
+                            $bookDescription = Utils::safe((string) $book->getDescription());
                             $bookImage = trim((string) $book->getImage());
                             $rowBg = $index % 2 === 0 ? 'bg-white' : 'bg-stone-50';
                             ?>
@@ -79,7 +79,7 @@ $messageUrl = 'index.php?action=messages&user=' . $profileUser->getId();
                                     <?php if ($bookImage !== ''): ?>
                                         <img
                                             class="h-16 w-12 object-cover"
-                                            src="<?= htmlspecialchars($bookImage, ENT_QUOTES, 'UTF-8') ?>"
+                                            src="<?= Utils::safe($bookImage) ?>"
                                             alt="Couverture de <?= $bookTitle ?>"
                                         >
                                     <?php else: ?>

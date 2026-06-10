@@ -32,9 +32,9 @@
             <div class="grid grid-cols-4 gap-6">
                 <?php foreach ($books as $book): ?>
                     <?php
-                    $bookTitle = htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8');
-                    $bookAuthor = htmlspecialchars($book->getAuthor(), ENT_QUOTES, 'UTF-8');
-                    $ownerUsername = htmlspecialchars($book->getOwnerUsername(), ENT_QUOTES, 'UTF-8');
+                    $bookTitle = Utils::safe($book->getTitle());
+                    $bookAuthor = Utils::safe($book->getAuthor());
+                    $ownerUsername = Utils::safe($book->getOwnerUsername());
                     $bookImage = trim((string) $book->getImage());
                     $bookUrl = 'index.php?action=book&id=' . $book->getId();
                     ?>
@@ -43,7 +43,7 @@
                         <?php if ($bookImage !== ''): ?>
                             <img
                                 class="h-48 w-full object-cover"
-                                src="<?= htmlspecialchars($bookImage, ENT_QUOTES, 'UTF-8') ?>"
+                                src="<?= Utils::safe($bookImage) ?>"
                                 alt="Couverture de <?= $bookTitle ?>"
                             >
                         <?php endif; ?>

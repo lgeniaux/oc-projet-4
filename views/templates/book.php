@@ -1,8 +1,8 @@
 <?php
-$bookTitle = htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8');
-$bookAuthor = htmlspecialchars($book->getAuthor(), ENT_QUOTES, 'UTF-8');
-$bookDescription = nl2br(htmlspecialchars((string) $book->getDescription(), ENT_QUOTES, 'UTF-8'));
-$ownerUsername = htmlspecialchars($book->getOwnerUsername(), ENT_QUOTES, 'UTF-8');
+$bookTitle = Utils::safe($book->getTitle());
+$bookAuthor = Utils::safe($book->getAuthor());
+$bookDescription = nl2br(Utils::safe((string) $book->getDescription()));
+$ownerUsername = Utils::safe($book->getOwnerUsername());
 $bookImage = trim((string) $book->getImage());
 ?>
 
@@ -17,7 +17,7 @@ $bookImage = trim((string) $book->getImage());
         <?php if ($bookImage !== ''): ?>
             <img
                 class="h-full min-h-[650px] w-full object-cover"
-                src="<?= htmlspecialchars($bookImage, ENT_QUOTES, 'UTF-8') ?>"
+                src="<?= Utils::safe($bookImage) ?>"
                 alt="Couverture de <?= $bookTitle ?>"
             >
         <?php endif; ?>

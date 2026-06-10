@@ -8,16 +8,15 @@ class AuthController
         $email = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = trim($_POST['email'] ?? '');
-            $password = $_POST['password'] ?? '';
+            $email = trim(Utils::request('email', ''));
+            $password = Utils::request('password', '');
 
             $result = AuthService::login($email, $password);
 
             if ($result['user'] !== null) {
                 session_regenerate_id(true);
                 $_SESSION['user_id'] = $result['user']->getId();
-                header('Location: index.php?action=home');
-                exit;
+                Utils::redirect('home');
             }
 
             $error = $result['error'];
@@ -37,17 +36,16 @@ class AuthController
         $email = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = trim($_POST['username'] ?? '');
-            $email = trim($_POST['email'] ?? '');
-            $password = $_POST['password'] ?? '';
+            $username = trim(Utils::request('username', ''));
+            $email = trim(Utils::request('email', ''));
+            $password = Utils::request('password', '');
 
             $result = AuthService::register($username, $email, $password);
 
             if ($result['user'] !== null) {
                 session_regenerate_id(true);
                 $_SESSION['user_id'] = $result['user']->getId();
-                header('Location: index.php?action=home');
-                exit;
+                Utils::redirect('home');
             }
 
             $error = $result['error'];
@@ -64,8 +62,7 @@ class AuthController
     public function logout(): void
     {
         session_destroy();
-        header('Location: index.php?action=home');
-        exit;
+        Utils::redirect('home');
     }
 
     public function protectedTest(): void

@@ -9,7 +9,7 @@
                 type="search"
                 name="search"
                 placeholder="Rechercher un livre"
-                value="<?= htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>"
+                value="<?= Utils::safe($search) ?>"
             >
             <button class="bg-green-600 px-4 py-2 text-white" type="submit">
                 Rechercher
@@ -23,9 +23,9 @@
         <div class="grid grid-cols-4 gap-6">
             <?php foreach ($books as $book): ?>
                 <?php
-                $bookTitle = htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8');
-                $bookAuthor = htmlspecialchars($book->getAuthor(), ENT_QUOTES, 'UTF-8');
-                $ownerUsername = htmlspecialchars($book->getOwnerUsername(), ENT_QUOTES, 'UTF-8');
+                $bookTitle = Utils::safe($book->getTitle());
+                $bookAuthor = Utils::safe($book->getAuthor());
+                $ownerUsername = Utils::safe($book->getOwnerUsername());
                 $bookImage = trim((string) $book->getImage());
                 $bookUrl = 'index.php?action=book&id=' . $book->getId();
                 ?>
@@ -34,7 +34,7 @@
                     <?php if ($bookImage !== ''): ?>
                         <img
                             class="h-56 w-full object-cover"
-                            src="<?= htmlspecialchars($bookImage, ENT_QUOTES, 'UTF-8') ?>"
+                            src="<?= Utils::safe($bookImage) ?>"
                             alt="Couverture de <?= $bookTitle ?>"
                         >
                     <?php endif; ?>

@@ -4,7 +4,7 @@
 
         <?php if ($error !== null): ?>
             <p class="mb-6 text-red-600">
-                <?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?>
+                <?= Utils::safe($error) ?>
             </p>
         <?php endif; ?>
 
@@ -15,7 +15,7 @@
                 id="username"
                 type="text"
                 name="username"
-                value="<?= htmlspecialchars($username, ENT_QUOTES, 'UTF-8') ?>"
+                value="<?= Utils::safe($username) ?>"
                 required
             >
 
@@ -25,7 +25,7 @@
                 id="email"
                 type="email"
                 name="email"
-                value="<?= htmlspecialchars($email, ENT_QUOTES, 'UTF-8') ?>"
+                value="<?= Utils::safe($email) ?>"
                 required
             >
 

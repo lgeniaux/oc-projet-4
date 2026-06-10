@@ -99,8 +99,7 @@ class AuthService
     public static function requireAuth(): void
     {
         if (!isset($_SESSION['user_id'])) {
-            header('Location: index.php?action=login');
-            exit;
+            Utils::redirect('login');
         }
     }
 

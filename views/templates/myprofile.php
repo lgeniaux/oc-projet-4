@@ -1,6 +1,6 @@
 <?php
-$username = htmlspecialchars($profileUser->getUsername(), ENT_QUOTES, 'UTF-8');
-$email = htmlspecialchars($profileUser->getEmail(), ENT_QUOTES, 'UTF-8');
+$username = Utils::safe($profileUser->getUsername());
+$email = Utils::safe($profileUser->getEmail());
 $profileImage = trim((string) $profileUser->getProfileImage());
 
 $createdAt = new DateTime($profileUser->getCreatedAt());
@@ -19,7 +19,7 @@ $yearsSinceRegistration = $now->diff($createdAt)->y;
 
     <?php if ($error !== null): ?>
         <div class="mb-6 rounded border border-red-600 bg-red-50 p-4 text-red-800">
-            <?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?>
+            <?= Utils::safe($error) ?>
         </div>
     <?php endif; ?>
 
@@ -30,7 +30,7 @@ $yearsSinceRegistration = $now->diff($createdAt)->y;
                 <img
                     id="profileImagePreview"
                     class="mb-4 h-40 w-40 rounded-full object-cover"
-                    src="<?= htmlspecialchars($profileImage, ENT_QUOTES, 'UTF-8') ?>"
+                    src="<?= Utils::safe($profileImage) ?>"
                     alt="Photo de profil de <?= $username ?>"
                 >
             <?php else: ?>
@@ -48,7 +48,7 @@ $yearsSinceRegistration = $now->diff($createdAt)->y;
                         name="profile_image"
                         form="profileForm"
                         placeholder="https://exemple.com/photo.jpg"
-                        value="<?= htmlspecialchars($profileImage, ENT_QUOTES, 'UTF-8') ?>"
+                        value="<?= Utils::safe($profileImage) ?>"
                     >
                 </div>
             </details>
@@ -142,9 +142,9 @@ $yearsSinceRegistration = $now->diff($createdAt)->y;
                 <?php else: ?>
                     <?php foreach ($books as $index => $book): ?>
                         <?php
-                        $bookTitle = htmlspecialchars($book->getTitle(), ENT_QUOTES, 'UTF-8');
-                        $bookAuthor = htmlspecialchars($book->getAuthor(), ENT_QUOTES, 'UTF-8');
-                        $bookDescription = htmlspecialchars((string) $book->getDescription(), ENT_QUOTES, 'UTF-8');
+                        $bookTitle = Utils::safe($book->getTitle());
+                        $bookAuthor = Utils::safe($book->getAuthor());
+                        $bookDescription = Utils::safe((string) $book->getDescription());
                         $bookImage = trim((string) $book->getImage());
                         $rowBg = $index % 2 === 0 ? 'bg-white' : 'bg-stone-50';
                         $isAvailable = $book->isAvailable();
@@ -155,7 +155,7 @@ $yearsSinceRegistration = $now->diff($createdAt)->y;
                                 <?php if ($bookImage !== ''): ?>
                                     <img
                                         class="h-16 w-12 object-cover"
-                                        src="<?= htmlspecialchars($bookImage, ENT_QUOTES, 'UTF-8') ?>"
+                                        src="<?= Utils::safe($bookImage) ?>"
                                         alt="Couverture de <?= $bookTitle ?>"
                                     >
                                 <?php else: ?>

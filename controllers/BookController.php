@@ -4,7 +4,7 @@ class BookController
 {
     public function showBooks(): void
     {
-        $search = trim($_GET['search'] ?? '');
+        $search = trim(Utils::request('search', ''));
 
         $bookManager = new BookManager();
 
@@ -23,7 +23,7 @@ class BookController
 
     public function showBook(): void
     {
-        $id = (int) ($_GET['id'] ?? 0);
+        $id = (int) Utils::request('id', 0);
 
         if ($id <= 0) {
             throw new Exception("Le livre demandé n'existe pas.");
@@ -46,7 +46,7 @@ class BookController
     {
         AuthService::requireAuth();
 
-        $id = (int) ($_GET['id'] ?? 0);
+        $id = (int) Utils::request('id', 0);
 
         if ($id <= 0) {
             throw new Exception("Le livre demandé n'existe pas.");
@@ -63,7 +63,6 @@ class BookController
 
         $bookManager->deleteBook($id);
 
-        header('Location: index.php?action=profile&id=' . $_SESSION['user_id']);
-        exit;
+        Utils::redirect('profile', ['id' => $_SESSION['user_id']]);
     }
 }

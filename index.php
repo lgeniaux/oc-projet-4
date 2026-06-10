@@ -5,11 +5,7 @@ session_start();
 require_once 'config/config.php';
 require_once 'config/autoload.php';
 
-$action = 'home';
-
-if (isset($_GET['action'])) {
-    $action = $_GET['action'];
-}
+$action = Utils::request('action', 'home');
 
 try {
     switch ($action) {
@@ -59,5 +55,5 @@ try {
     }
 } catch (Exception $exception) {
     echo '<h1>Erreur</h1>';
-    echo '<p>' . htmlspecialchars($exception->getMessage(), ENT_QUOTES, 'UTF-8') . '</p>';
+    echo '<p>' . Utils::safe($exception->getMessage()) . '</p>';
 }

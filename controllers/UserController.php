@@ -4,7 +4,7 @@ class UserController
 {
     public function showProfile(): void
     {
-        $id = (int) ($_GET['id'] ?? 0);
+        $id = (int) Utils::request('id', 0);
 
         if ($id <= 0) {
             throw new Exception("L'utilisateur demandé n'existe pas.");
@@ -44,10 +44,10 @@ class UserController
         $success = false;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = trim($_POST['email'] ?? '');
-            $username = trim($_POST['username'] ?? '');
-            $password = $_POST['password'] ?? '';
-            $profileImage = trim($_POST['profile_image'] ?? '');
+            $email = trim(Utils::request('email', ''));
+            $username = trim(Utils::request('username', ''));
+            $password = Utils::request('password', '');
+            $profileImage = trim(Utils::request('profile_image', ''));
 
             $result = AuthService::updateProfile($user, $email, $username, $password, $profileImage);
 
