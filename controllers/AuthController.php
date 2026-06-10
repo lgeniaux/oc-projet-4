@@ -11,12 +11,16 @@ class AuthController
             $email = trim($_POST['email'] ?? '');
             $password = $_POST['password'] ?? '';
 
-            $error = AuthService::login($email, $password);
+            $result = AuthService::login($email, $password);
 
-            if ($error === null) {
+            if ($result['user'] !== null) {
+                session_regenerate_id(true);
+                $_SESSION['user_id'] = $result['user']->getId();
                 header('Location: index.php?action=home');
                 exit;
             }
+
+            $error = $result['error'];
         }
 
         $view = new View('Connexion');
@@ -37,12 +41,16 @@ class AuthController
             $email = trim($_POST['email'] ?? '');
             $password = $_POST['password'] ?? '';
 
-            $error = AuthService::register($username, $email, $password);
+            $result = AuthService::register($username, $email, $password);
 
-            if ($error === null) {
+            if ($result['user'] !== null) {
+                session_regenerate_id(true);
+                $_SESSION['user_id'] = $result['user']->getId();
                 header('Location: index.php?action=home');
                 exit;
             }
+
+            $error = $result['error'];
         }
 
         $view = new View('Inscription');

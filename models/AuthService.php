@@ -2,49 +2,44 @@
 
 class AuthService
 {
-    public static function login(string $email, string $password): ?string
+    public static function login(string $email, string $password): array
     {
         if ($email === '' || $password === '') {
-            return 'Email et mot de passe sont obligatoires.';
+            return ['user' => null, 'error' => 'Email et mot de passe sont obligatoires.'];
         }
 
         $userManager = new UserManager();
         $user = $userManager->findUserByEmail($email);
 
         if ($user === null || !password_verify($password, $user->getPasswordHash())) {
-            return 'Email ou mot de passe incorrect.';
+            return ['user' => null, 'error' => 'Email ou mot de passe incorrect.'];
         }
 
-        session_regenerate_id(true);
-        $_SESSION['user_id'] = $user->getId();
-
-        return null;
+        return ['user' => $user, 'error' => null];
     }
 
-    public static function register(string $username, string $email, string $password): ?string
+    public static function register(string $username, string $email, string $password): array
     {
         if ($username === '' || $email === '' || $password === '') {
-            return 'Tous les champs sont obligatoires.';
+            return ['user' => null, 'error' => 'Tous les champs sont obligatoires.'];
         }
 
         $emailError = self::validateEmail($email);
         if ($emailError !== null) {
-            return $emailError;
+            return ['user' => null, 'error' => $emailError];
         }
 
         $usernameError = self::validateUsername($username);
         if ($usernameError !== null) {
-            return $usernameError;
+            return ['user' => null, 'error' => $usernameError];
         }
 
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $userManager = new UserManager();
         $userId = $userManager->createUser($username, $email, $passwordHash);
 
-        session_regenerate_id(true);
-        $_SESSION['user_id'] = $userId;
-
-        return null;
+        $user = $userManager->findUserById($userId);
+        return ['user' => $user, 'error' => null];
     }
 
     public static function validateProfileUpdate(
