@@ -29,6 +29,10 @@ try {
             $userController = new UserController();
             $userController->showProfile();
             break;
+        case 'delete-book':
+            $bookController = new BookController();
+            $bookController->deleteBook();
+            break;
         case 'login':
             $authController = new AuthController();
             $authController->login();

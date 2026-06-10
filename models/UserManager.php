@@ -84,6 +84,46 @@ class UserManager
         return (int) $this->db->lastInsertId();
     }
 
+    public function updateEmail(int $id, string $email): void
+    {
+        $sql = 'UPDATE users SET email = :email WHERE id = :id';
+        $query = $this->db->prepare($sql);
+        $query->execute([
+            'id' => $id,
+            'email' => $email,
+        ]);
+    }
+
+    public function updateUsername(int $id, string $username): void
+    {
+        $sql = 'UPDATE users SET username = :username WHERE id = :id';
+        $query = $this->db->prepare($sql);
+        $query->execute([
+            'id' => $id,
+            'username' => $username,
+        ]);
+    }
+
+    public function updatePassword(int $id, string $passwordHash): void
+    {
+        $sql = 'UPDATE users SET password_hash = :password_hash WHERE id = :id';
+        $query = $this->db->prepare($sql);
+        $query->execute([
+            'id' => $id,
+            'password_hash' => $passwordHash,
+        ]);
+    }
+
+    public function updateProfileImage(int $id, ?string $profileImage): void
+    {
+        $sql = 'UPDATE users SET profile_image = :profile_image WHERE id = :id';
+        $query = $this->db->prepare($sql);
+        $query->execute([
+            'id' => $id,
+            'profile_image' => $profileImage,
+        ]);
+    }
+
     private function createUserFromData(array $userData): User
     {
         return new User(

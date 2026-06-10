@@ -1,4 +1,4 @@
-<section class="mx-auto grid max-w-5xl grid-cols-2 gap-12 p-6 py-20">
+<section class="mx-auto grid max-w-screen-xl grid-cols-2 gap-12 p-6 py-20">
     <div>
         <h1 class="mb-6 text-5xl font-bold">
             Rejoignez nos lecteurs passionnés
@@ -21,7 +21,7 @@
 </section>
 
 <section id="books" class="bg-white p-6 py-16">
-    <div class="mx-auto max-w-5xl">
+    <div class="mx-auto max-w-screen-xl">
         <h2 class="mb-10 text-center text-3xl font-bold">
             Les derniers livres ajoutés
         </h2>

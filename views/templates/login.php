@@ -1,4 +1,4 @@
-<section class="mx-auto max-w-5xl px-6 py-20">
+<section class="mx-auto max-w-screen-xl px-6 py-20">
     <div class="max-w-sm">
         <h1 class="mb-12 text-4xl font-bold">Connexion</h1>
 

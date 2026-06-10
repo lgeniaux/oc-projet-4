@@ -41,4 +41,31 @@ class BookController
             'book' => $book,
         ]);
     }
+
+    public function deleteBook(): void
+    {
+        AuthService::requireAuth();
+
+        $id = (int) ($_GET['id'] ?? 0);
+
+        if ($id <= 0) {
+            throw new Exception("Le livre demandé n'existe pas.");
+        }
+
+        $bookManager = new BookManager();
+        $book = $bookManager->findBookById($id);
+
+        if ($book === null) {
+            throw new Exception("Le livre demandé n'existe pas.");
+        }
+
+        if ($book->getUserId() !== (int) $_SESSION['user_id']) {
+            throw new Exception("Vous n'avez pas le droit de supprimer ce livre.");
+        }
+
+        $bookManager->deleteBook($id);
+
+        header('Location: index.php?action=profile&id=' . $_SESSION['user_id']);
+        exit;
+    }
 }

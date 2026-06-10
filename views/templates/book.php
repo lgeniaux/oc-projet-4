@@ -6,7 +6,7 @@ $ownerUsername = htmlspecialchars($book->getOwnerUsername(), ENT_QUOTES, 'UTF-8'
 $bookImage = trim((string) $book->getImage());
 ?>
 
-<section class="mx-auto max-w-5xl px-6 py-8 text-sm text-stone-400">
+<section class="mx-auto max-w-screen-xl px-6 py-8 text-sm text-stone-400">
     <a href="index.php?action=books">Nos livres</a>
     <span>&gt;</span>
     <span><?= $bookTitle ?></span>

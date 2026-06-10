@@ -109,6 +109,16 @@ class BookManager
         return (int) $query->fetchColumn();
     }
 
+    public function deleteBook(int $id): void
+    {
+        $sql = 'DELETE FROM books WHERE id = :id';
+
+        $query = $this->db->prepare($sql);
+        $query->execute([
+            'id' => $id,
+        ]);
+    }
+
     private function createBooks(array $booksData): array
     {
         $books = [];

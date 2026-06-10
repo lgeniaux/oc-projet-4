@@ -1,4 +1,4 @@
-<section class="mx-auto max-w-5xl p-6 py-12">
+<section class="mx-auto max-w-screen-xl p-6 py-12">
     <div class="mb-10 flex items-center justify-between gap-6">
         <h1 class="text-3xl font-bold">Nos livres à l'échange</h1>
 

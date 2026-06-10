@@ -9,7 +9,7 @@ $yearsSinceRegistration = $now->diff($createdAt)->y;
 $messageUrl = 'index.php?action=messages&user=' . $profileUser->getId();
 ?>
 
-<section class="mx-auto max-w-5xl px-6 py-16">
+<section class="mx-auto max-w-screen-xl px-6 py-16">
     <div class="grid grid-cols-3 gap-8">
 
         <aside class="col-span-1 flex flex-col items-center rounded-2xl bg-white px-8 py-12">
