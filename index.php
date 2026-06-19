@@ -21,6 +21,14 @@ try {
             $bookController = new BookController();
             $bookController->showBook();
             break;
+        case 'add-book':
+            $bookController = new BookController();
+            $bookController->addBook();
+            break;
+        case 'edit-book':
+            $bookController = new BookController();
+            $bookController->editBook();
+            break;
         case 'profile':
             $userController = new UserController();
             $userController->showProfile();

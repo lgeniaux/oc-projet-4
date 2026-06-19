@@ -31,7 +31,7 @@ class Utils
 
     /**
      * Raccourci pour htmlspecialchars (usage dans les vues).
-     * @param string $string : la chaîne à proté/neger.
+     * @param string $string : la chaîne à protéger.
      * @return string : la chaîne protégée.
      */
     public static function safe(string $string): string

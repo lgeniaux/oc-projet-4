@@ -72,7 +72,7 @@ $yearsSinceRegistration = $now->diff($createdAt)->y;
         <div class="col-span-2 rounded-2xl bg-white px-10 py-12">
             <h2 class="mb-8 text-xl font-bold">Vos informations personnelles</h2>
 
-            <form id="profileForm" method="post" action="index.php?action=profile&id=<?= $profileUser->getId() ?>" class="space-y-6">
+            <form id="profileForm" method="post" action="index.php?action=myprofile" class="space-y-6">
 
                 <div>
                     <label class="mb-2 block text-sm text-stone-500" for="email">Adresse email</label>
@@ -121,6 +121,12 @@ $yearsSinceRegistration = $now->diff($createdAt)->y;
     </div>
 
     <div class="mt-10 overflow-hidden rounded-2xl bg-white">
+        <div class="flex items-center justify-between px-6 py-6">
+            <h2 class="text-xl font-bold">Votre bibliothèque</h2>
+            <a class="rounded bg-green-600 px-5 py-3 font-bold text-white" href="index.php?action=add-book">
+                Ajouter un livre
+            </a>
+        </div>
         <table class="w-full text-sm">
             <thead>
                 <tr class="text-left text-xs font-bold uppercase tracking-wider text-stone-500">

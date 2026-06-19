@@ -20,11 +20,10 @@ class BookManager
                 LIMIT :limit';
 
         $query = $this->db->prepare($sql);
-        $query->execute([
-            'limit' => $limit,
-        ]);
+        $query->bindValue('limit', $limit, PDO::PARAM_INT);
+        $query->execute();
 
-        return $this->createBooks($query->fetchAll());
+        return $this->hydrateBooks($query->fetchAll());
     }
 
     public function findAvailableBooks(): array
@@ -39,7 +38,7 @@ class BookManager
         $query = $this->db->prepare($sql);
         $query->execute();
 
-        return $this->createBooks($query->fetchAll());
+        return $this->hydrateBooks($query->fetchAll());
     }
 
     public function searchAvailableBooksByTitle(string $search): array
@@ -57,7 +56,7 @@ class BookManager
             'search' => '%' . $search . '%',
         ]);
 
-        return $this->createBooks($query->fetchAll());
+        return $this->hydrateBooks($query->fetchAll());
     }
 
     public function findBookById(int $id): ?Book
@@ -79,7 +78,7 @@ class BookManager
             return null;
         }
 
-        return $this->createBook($bookData);
+        return $this->hydrateBook($bookData);
     }
 
     public function findBooksByUserId(int $userId): array
@@ -96,7 +95,7 @@ class BookManager
             'user_id' => $userId,
         ]);
 
-        return $this->createBooks($query->fetchAll());
+        return $this->hydrateBooks($query->fetchAll());
     }
 
     public function countBooksByUserId(int $userId): int
@@ -111,6 +110,58 @@ class BookManager
         return (int) $query->fetchColumn();
     }
 
+    public function createBook(
+        int $userId,
+        string $title,
+        string $author,
+        string $image,
+        string $description,
+        string $status
+    ): int {
+        $sql = 'INSERT INTO books (user_id, title, author, image, description, status)
+                VALUES (:user_id, :title, :author, :image, :description, :status)';
+
+        $query = $this->db->prepare($sql);
+        $query->execute([
+            'user_id' => $userId,
+            'title' => $title,
+            'author' => $author,
+            'image' => $image === '' ? null : $image,
+            'description' => $description === '' ? null : $description,
+            'status' => $status,
+        ]);
+
+        return (int) $this->db->lastInsertId();
+    }
+
+    public function updateBook(
+        int $id,
+        string $title,
+        string $author,
+        string $image,
+        string $description,
+        string $status
+    ): void {
+        $sql = 'UPDATE books
+                SET title = :title,
+                    author = :author,
+                    image = :image,
+                    description = :description,
+                    status = :status,
+                    updated_at = NOW()
+                WHERE id = :id';
+
+        $query = $this->db->prepare($sql);
+        $query->execute([
+            'id' => $id,
+            'title' => $title,
+            'author' => $author,
+            'image' => $image === '' ? null : $image,
+            'description' => $description === '' ? null : $description,
+            'status' => $status,
+        ]);
+    }
+
     public function deleteBook(int $id): void
     {
         $sql = 'DELETE FROM books WHERE id = :id';
@@ -121,18 +172,18 @@ class BookManager
         ]);
     }
 
-    private function createBooks(array $booksData): array
+    private function hydrateBooks(array $booksData): array
     {
         $books = [];
 
         foreach ($booksData as $bookData) {
-            $books[] = $this->createBook($bookData);
+            $books[] = $this->hydrateBook($bookData);
         }
 
         return $books;
     }
 
-    private function createBook(array $bookData): Book
+    private function hydrateBook(array $bookData): Book
     {
         return new Book(
             (int) $bookData['id'],
