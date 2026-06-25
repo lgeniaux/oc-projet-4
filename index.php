@@ -63,9 +63,14 @@ try {
             break;
 
         default:
-            throw new Exception("La page demandée n'existe pas.");
+            http_response_code(404);
+            $view = new View('Page introuvable');
+            $view->render('not_found');
+            break;
     }
 } catch (Exception $exception) {
-    echo '<h1>Erreur</h1>';
-    echo '<p>' . Utils::safe($exception->getMessage()) . '</p>';
+    error_log($exception->getMessage());
+    http_response_code(500);
+    $view = new View('Erreur');
+    $view->render('error');
 }
