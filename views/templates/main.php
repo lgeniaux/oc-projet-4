@@ -13,7 +13,14 @@
         <nav class="flex gap-6">
             <a href="index.php?action=home">Accueil</a>
             <a href="index.php?action=books">Nos livres à l'échange</a>
-            <a href="#">Messagerie</a>
+            <a class="flex items-center gap-1" href="index.php?action=messages">
+                <span>Messagerie</span>
+                <?php if ($unreadMessagesCount > 0): ?>
+                    <span class="flex h-5 min-w-5 items-center justify-center rounded-full bg-stone-900 px-1 text-xs text-white">
+                        <?= $unreadMessagesCount ?>
+                    </span>
+                <?php endif; ?>
+            </a>
             <?php if (isset($_SESSION['user_id'])): ?>
                 <a href="index.php?action=myprofile">Mon compte</a>
                 <a href="index.php?action=logout">Déconnexion</a>

@@ -3,10 +3,12 @@
 class View
 {
     private string $title;
+    private int $unreadMessagesCount;
 
     public function __construct(string $title)
     {
         $this->title = $title;
+        $this->unreadMessagesCount = MessageService::countUnreadMessagesForCurrentUser();
     }
 
     public function render(string $viewName, array $params = []): void
@@ -24,6 +26,7 @@ class View
         $content = ob_get_clean();
 
         $title = $this->title;
+        $unreadMessagesCount = $this->unreadMessagesCount;
 
         require MAIN_VIEW_PATH;
     }

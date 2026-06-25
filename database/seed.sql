@@ -163,4 +163,8 @@ VALUES
 INSERT INTO messages (sender_id, receiver_id, content)
 VALUES
     (1, 2, 'Bonjour Bob, ton livre est-il toujours disponible ?'),
-    (2, 1, 'Bonjour Alice, oui il est disponible mais je le vends 400 balles');
+    (2, 1, 'Bonjour Alice, oui il est disponible mais je le vends 400 balles'),
+    (1, 2, 'Merci pour ta réponse, je vais regarder les autres livres aussi.'),
+    (2, 1, 'Pas de souci, dis-moi si un autre titre t’intéresse.'),
+    (1, 2, 'Est-ce que tu es disponible cette semaine pour un échange ?'),
+    (2, 1, 'Oui, plutôt jeudi en fin de journée.');

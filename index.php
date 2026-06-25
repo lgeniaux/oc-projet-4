@@ -41,6 +41,10 @@ try {
             $bookController = new BookController();
             $bookController->deleteBook();
             break;
+        case 'messages':
+            $messageController = new MessageController();
+            $messageController->showMessages();
+            break;
         case 'login':
             $authController = new AuthController();
             $authController->showLogin();
