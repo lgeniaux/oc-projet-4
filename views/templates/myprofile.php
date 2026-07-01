@@ -76,6 +76,10 @@ $yearsSinceRegistration = $now->diff($createdAt)->y;
             </div>
         </div>
 
+        <div class="profile-library-toolbar">
+            <a class="btn btn-primary profile-add-book-button" href="index.php?action=add-book">Ajouter un livre</a>
+        </div>
+
         <div class="profile-library profile-library--own">
             <table class="profile-table">
                 <thead>

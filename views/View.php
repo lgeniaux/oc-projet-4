@@ -37,6 +37,9 @@ class View
         if ($activeNav === 'profile') {
             $activeNav = 'myprofile';
         }
+        if (in_array($activeNav, ['add-book', 'edit-book'], true)) {
+            $activeNav = 'myprofile';
+        }
 
         require MAIN_VIEW_PATH;
     }

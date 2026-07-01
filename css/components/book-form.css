@@ -1,0 +1,171 @@
+@layer components {
+    main:has(.book-form-page) {
+        @apply bg-background;
+    }
+
+    .book-form-page {
+        @apply bg-background;
+        max-width: 1440px;
+        min-height: 1171px;
+        margin: 0 auto;
+        padding-top: 40px;
+    }
+
+    .book-form-page__inner {
+        @apply mx-auto max-w-[1140px];
+    }
+
+    .book-form-back {
+        @apply inline-flex items-center gap-1 text-sm leading-[17px] text-muted;
+    }
+
+    .book-form-title {
+        @apply mt-4 font-display text-[26px] font-normal leading-[35px] text-black;
+    }
+
+    .book-form-alert {
+        @apply mt-6 rounded-md border border-red-600 bg-red-50 p-4 text-sm text-red-800;
+    }
+
+    .book-form-panel {
+        @apply mt-[23px] bg-white;
+        min-height: 941px;
+        border-radius: 20px;
+        padding: 56px 49px 60px 50px;
+    }
+
+    .book-form-grid {
+        display: grid;
+        grid-template-columns: 488px 435px;
+        gap: 118px;
+    }
+
+    .book-form-label {
+        @apply block text-sm leading-[17px] text-muted;
+        margin-bottom: 10px;
+    }
+
+    .book-form-cover {
+        @apply w-full object-cover;
+        height: 488px;
+    }
+
+    .book-form-cover--empty {
+        @apply flex items-center justify-center bg-[#D9D9D9] text-sm text-muted;
+    }
+
+    .book-form-photo-field {
+        @apply mt-[21px] text-right text-xs leading-[15px] text-dark underline;
+    }
+
+    .book-form-photo-field summary {
+        @apply cursor-pointer list-none;
+    }
+
+    .book-form-photo-field summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .book-form-photo-field input {
+        @apply mt-3 h-[50px] w-full rounded-md border border-[#F0F0F0] bg-[#EDF2F6] px-[14px] text-left text-sm text-dark outline-none;
+    }
+
+    .book-form-fields {
+        @apply flex flex-col;
+        gap: 32px;
+    }
+
+    .book-form-field input,
+    .book-form-field select,
+    .book-form-field textarea {
+        @apply w-full rounded-md border border-[#F0F0F0] bg-[#EDF2F6] px-[14px] text-sm text-dark outline-none;
+    }
+
+    .book-form-field input,
+    .book-form-field select {
+        height: 50px;
+    }
+
+    .book-form-field textarea {
+        height: 356px;
+        padding-top: 13px;
+        resize: vertical;
+    }
+
+    .book-form-submit {
+        width: 322px;
+        height: 60px;
+        margin-top: 12px;
+    }
+
+    @media (max-width: 767px) {
+        .book-form-page {
+            max-width: none;
+            min-height: 1686px;
+            padding-top: 54px;
+        }
+
+        .book-form-page__inner {
+            max-width: none;
+        }
+
+        .book-form-back,
+        .book-form-title {
+            margin-left: 20px;
+        }
+
+        .book-form-title {
+            width: 271px;
+            margin-top: 7px;
+            font-size: 30px;
+            line-height: 40px;
+        }
+
+        .book-form-alert {
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+
+        .book-form-panel {
+            width: 100%;
+            min-height: 1413px;
+            margin-top: 35px;
+            border-radius: 20px;
+            padding: 42px 20px 0;
+        }
+
+        .book-form-grid {
+            display: block;
+        }
+
+        .book-form-photo .book-form-label {
+            font-size: 11px;
+            line-height: 11px;
+            margin-bottom: 8px;
+        }
+
+        .book-form-cover {
+            height: 335px;
+        }
+
+        .book-form-photo-field {
+            margin-top: 25px;
+            font-size: 16px;
+            line-height: 19px;
+        }
+
+        .book-form-fields {
+            margin-top: 32px;
+            gap: 32px;
+        }
+
+        .book-form-field textarea {
+            height: 433px;
+        }
+
+        .book-form-submit {
+            width: 335px;
+            margin-top: 12px;
+        }
+    }
+}

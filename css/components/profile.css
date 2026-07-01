@@ -145,8 +145,19 @@
         overflow: hidden;
     }
 
+    .profile-library-toolbar {
+        @apply flex justify-end;
+        margin-top: 24px;
+    }
+
+    .profile-add-book-button {
+        height: 48px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+
     .profile-library--own {
-        margin-top: 32px;
+        margin-top: 16px;
         min-height: 579px;
     }
 
@@ -321,10 +332,22 @@
         .profile-library,
         .profile-library--own {
             width: 333px;
-            margin-top: 32px;
             overflow: visible;
             background: transparent;
             border-radius: 0;
+        }
+
+        .profile-library-toolbar {
+            justify-content: stretch;
+            margin-top: 32px;
+        }
+
+        .profile-add-book-button {
+            width: 333px;
+        }
+
+        .profile-library--own {
+            margin-top: 16px;
         }
 
         .profile-table,
