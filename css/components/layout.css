@@ -1,3 +1,18 @@
+@layer base {
+    html,
+    body {
+        min-height: 100%;
+    }
+
+    body {
+        @apply flex min-h-screen flex-col;
+    }
+
+    main {
+        @apply flex-1;
+    }
+}
+
 @layer components {
     .site-header {
         @apply relative z-10 bg-light;

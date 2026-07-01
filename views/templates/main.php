@@ -25,7 +25,7 @@
             </nav>
 
             <nav class="site-nav-right" aria-label="Navigation utilisateur">
-                <a class="flex items-center gap-1.5 hover:text-primary" href="index.php?action=messages">
+                <a class="flex items-center gap-1.5 <?= ($activeNav ?? '') === 'messages' ? 'font-semibold' : 'font-normal' ?> hover:text-primary" href="index.php?action=messages">
                     <span>Messagerie</span>
                     <?php if ($unreadMessagesCount > 0): ?>
                         <span class="flex h-[15px] min-w-[15px] items-center justify-center rounded-full bg-dark px-1 text-[8px] font-bold text-light">
@@ -58,7 +58,7 @@
             <nav class="mobile-nav" aria-label="Menu mobile">
                 <a class="<?= ($activeNav ?? '') === 'home' ? 'font-semibold' : 'font-normal' ?> hover:text-primary" href="index.php?action=home">Accueil</a>
                 <a class="<?= ($activeNav ?? '') === 'books' ? 'font-semibold' : 'font-normal' ?> hover:text-primary" href="index.php?action=books">Nos livres à l'échange</a>
-                <a class="hover:text-primary" href="index.php?action=messages">Messagerie</a>
+                <a class="<?= ($activeNav ?? '') === 'messages' ? 'font-semibold' : 'font-normal' ?> hover:text-primary" href="index.php?action=messages">Messagerie</a>
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <a class="hover:text-primary" href="index.php?action=myprofile">Mon compte</a>
                     <a class="hover:text-primary" href="index.php?action=logout">Déconnexion</a>
