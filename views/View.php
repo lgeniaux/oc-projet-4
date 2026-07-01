@@ -27,6 +27,7 @@ class View
 
         $title = $this->title;
         $unreadMessagesCount = $this->unreadMessagesCount;
+        $activeNav = Utils::request('action', 'home');
 
         require MAIN_VIEW_PATH;
     }

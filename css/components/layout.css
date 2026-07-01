@@ -1,0 +1,108 @@
+@layer components {
+    .site-header {
+        @apply relative z-10 bg-light;
+    }
+
+    .site-header__inner {
+        @apply relative mx-auto grid h-20 max-w-[1140px] items-center px-0 text-sm tracking-wide;
+        grid-template-columns: 155px auto 1fr auto;
+    }
+
+    .site-logo {
+        @apply flex items-center gap-3;
+        width: 155px;
+        grid-column: 1;
+    }
+
+    .site-logo__image {
+        width: 155px;
+        height: 51px;
+    }
+
+    .site-logo__mark {
+        @apply flex h-[51px] w-[51px] items-center justify-center rounded-lg bg-primary;
+    }
+
+    .site-logo__text {
+        @apply font-display text-xl font-semibold text-primary;
+    }
+
+    .site-nav-left {
+        @apply flex items-center gap-6 text-sm tracking-wide;
+        grid-column: 2;
+        margin-left: 78px;
+        gap: 44px;
+        white-space: nowrap;
+    }
+
+    .site-nav-right {
+        @apply flex items-center text-sm tracking-wide;
+        grid-column: 4;
+        justify-self: end;
+        gap: 56px;
+        white-space: nowrap;
+    }
+
+    .mobile-menu-toggle,
+    .mobile-menu-button,
+    .mobile-nav {
+        @apply hidden;
+    }
+
+    .site-footer {
+        @apply bg-white;
+    }
+
+    .site-footer__inner {
+        @apply flex h-[61px] w-full items-center justify-end gap-8 pr-[46px] text-xs font-light text-dark;
+    }
+
+    .site-footer__logo {
+        width: 22px;
+        height: 18px;
+    }
+
+    @media (max-width: 767px) {
+        .site-header__inner {
+            @apply flex h-14 px-5;
+        }
+
+        .site-logo__mark {
+            @apply h-[26px] w-[26px] rounded;
+        }
+
+        .site-logo {
+            width: 78px;
+        }
+
+        .site-logo__image {
+            width: 78px;
+            height: auto;
+        }
+
+        .site-nav-left,
+        .site-nav-right {
+            @apply hidden;
+        }
+
+        .mobile-menu-toggle {
+            @apply sr-only;
+        }
+
+        .mobile-menu-button {
+            @apply ml-auto block cursor-pointer text-muted;
+        }
+
+        .mobile-nav {
+            @apply absolute left-0 top-14 hidden w-full flex-col gap-5 bg-light px-5 py-6 text-sm shadow-card;
+        }
+
+        .mobile-menu-toggle:checked ~ .mobile-nav {
+            @apply flex;
+        }
+
+        .site-footer__inner {
+            @apply h-[185px] flex-col justify-center gap-5 px-5;
+        }
+    }
+}

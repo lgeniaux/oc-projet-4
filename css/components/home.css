@@ -1,0 +1,240 @@
+@layer components {
+    .section-title {
+        @apply font-display text-[32px] font-normal leading-tight text-dark;
+    }
+
+    .home-hero {
+        display: grid;
+        grid-template-columns: 329px 404px;
+        column-gap: 105px;
+        width: 838px;
+        margin: 0 auto;
+        padding: 80px 0 113px;
+    }
+
+    .home-hero__copy {
+        margin-top: 158px;
+    }
+
+    .home-hero__title {
+        @apply font-display text-4xl font-normal leading-[1.2] text-black;
+    }
+
+    .home-hero__text {
+        @apply mt-6 font-light leading-relaxed text-dark;
+    }
+
+    .home-hero__button {
+        @apply mt-10;
+    }
+
+    .home-hero__image {
+        @apply h-[539px] w-[404px] object-cover;
+    }
+
+    .home-hero__credit {
+        @apply mt-3 text-right text-xs italic text-muted;
+    }
+
+    .home-latest {
+        @apply bg-background;
+        padding: 80px 0 63px;
+    }
+
+    .home-latest__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 200px);
+        justify-content: center;
+        gap: 38px;
+        margin-top: 80px;
+    }
+
+    .book-card {
+        @apply block overflow-hidden bg-white transition;
+        width: 200px;
+        height: 324px;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .book-card__cover {
+        @apply w-full object-cover;
+        height: 200px;
+    }
+
+    .book-card__empty-cover {
+        @apply w-full bg-light;
+        height: 200px;
+    }
+
+    .book-card__body {
+        background: white;
+        border-radius: 0 0 10px 10px;
+        display: flex;
+        flex-direction: column;
+        height: 124px;
+        padding: 20px 14px 23px;
+    }
+
+    .book-card__seller {
+        @apply mt-auto flex items-center gap-1;
+    }
+
+    .home-steps {
+        @apply mx-auto max-w-[1140px] px-0 text-center;
+        padding: 80px 0 86px;
+    }
+
+    .home-steps__intro {
+        @apply mx-auto mt-6 max-w-[397px] text-center font-light text-dark;
+    }
+
+    .home-steps__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 215px);
+        justify-content: center;
+        gap: 36px;
+        margin-top: 40px;
+    }
+
+    .step-card {
+        @apply flex items-center justify-center rounded-[10px] bg-white px-[17px] text-center;
+        width: 215px;
+        height: 139px;
+    }
+
+    .home-values-image {
+        @apply h-[230px] overflow-hidden;
+    }
+
+    .home-values-image img {
+        @apply h-full w-full object-cover;
+    }
+
+    .home-values {
+        @apply mx-auto max-w-[392px];
+        padding: 80px 0 0;
+        height: 456px;
+    }
+
+    .home-values .section-title {
+        @apply text-left;
+    }
+
+    .home-values__text {
+        @apply mt-7 space-y-4 font-light leading-[1.25] text-dark;
+    }
+
+    .home-signature {
+        @apply mx-auto max-w-[392px];
+        height: 216px;
+        padding-top: 25px;
+    }
+
+    .home-signature__inner {
+        @apply flex items-start justify-between;
+    }
+
+    .home-signature__text {
+        @apply mt-3 text-xs italic text-muted;
+    }
+
+    .home-signature__image {
+        width: 120px;
+        height: 102px;
+    }
+
+    @media (max-width: 767px) {
+        .home-hero {
+            display: flex;
+            flex-direction: column-reverse;
+            width: 100%;
+            padding: 0 20px 42px;
+        }
+
+        .home-hero__copy {
+            margin-top: 47px;
+        }
+
+        .home-hero__title {
+            @apply text-[30px];
+        }
+
+        .home-hero__image {
+            width: calc(100% + 40px);
+            max-width: none;
+            height: 503px;
+            margin-left: -20px;
+        }
+
+        .home-hero__credit {
+            @apply mr-1;
+        }
+
+        .home-hero__button,
+        .home-hero__button .btn {
+            @apply w-full;
+        }
+
+        .home-latest {
+            padding: 48px 20px 54px;
+        }
+
+        .home-latest__grid {
+            grid-template-columns: repeat(2, 160px);
+            gap: 16px 15px;
+            margin-top: 34px;
+        }
+
+        .book-card {
+            width: 160px;
+            height: 259px;
+        }
+
+        .book-card__cover,
+        .book-card__empty-cover {
+            height: 160px;
+        }
+
+        .book-card__body {
+            height: 99px;
+            padding: 16px 11px 14px;
+        }
+
+        .home-steps {
+            padding: 48px 20px 55px;
+        }
+
+        .home-steps__grid {
+            grid-template-columns: 335px;
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .step-card {
+            width: 335px;
+        }
+
+        .home-values-image {
+            height: 425px;
+        }
+
+        .home-values {
+            @apply max-w-none;
+            height: auto;
+            padding: 33px 20px 0;
+        }
+
+        .home-values .section-title {
+            @apply text-[28px];
+        }
+
+        .home-values__text {
+            @apply text-sm;
+        }
+
+        .home-signature {
+            @apply px-5;
+            height: 211px;
+        }
+    }
+}

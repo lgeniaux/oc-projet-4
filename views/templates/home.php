@@ -1,35 +1,34 @@
-<section class="mx-auto grid max-w-screen-xl grid-cols-2 gap-12 p-6 py-20">
-    <div>
-        <h1 class="mb-6 text-5xl font-bold">
+<section class="home-hero">
+    <div class="home-hero__copy">
+        <h1 class="home-hero__title">
             Rejoignez nos lecteurs passionnés
         </h1>
 
-        <p class="mb-8 text-stone-600">
-            Donnez une nouvelle vie à vos livres en les échangeant avec d'autres amoureux de la lecture.
+        <p class="home-hero__text">
+            Donnez une nouvelle vie à vos livres en les échangeant avec d'autres amoureux de la lecture. Nous croyons en la magie du partage de connaissances et d'histoires à travers les livres.
         </p>
 
-        <a class="rounded bg-green-600 px-6 py-3 text-white" href="#books">
-            Découvrir
-        </a>
+        <div class="home-hero__button">
+            <a class="btn btn-primary" href="index.php?action=books">Découvrir</a>
+        </div>
     </div>
 
-    <img
-        class="w-full"
-        src="https://images.unsplash.com/photo-1526243741027-444d633d7365?auto=format&fit=crop&w=900&q=80"
-        alt="Lecteur entouré de livres"
-    >
+    <div>
+        <img class="home-hero__image" src="images/hero.jpg" alt="Lecteur entouré de livres">
+        <p class="home-hero__credit">Hamza</p>
+    </div>
 </section>
 
-<section id="books" class="bg-white p-6 py-16">
-    <div class="mx-auto max-w-screen-xl">
-        <h2 class="mb-10 text-center text-3xl font-bold">
+<section class="home-latest">
+    <div>
+        <h2 class="section-title text-center">
             Les derniers livres ajoutés
         </h2>
 
         <?php if (empty($books)): ?>
-            <p class="text-center">Aucun livre disponible pour le moment.</p>
+            <p class="mt-12 text-center text-muted">Aucun livre disponible pour le moment.</p>
         <?php else: ?>
-            <div class="grid grid-cols-4 gap-6">
+            <div class="home-latest__grid">
                 <?php foreach ($books as $book): ?>
                     <?php
                     $bookTitle = Utils::safe($book->getTitle());
@@ -39,29 +38,92 @@
                     $bookUrl = 'index.php?action=book&id=' . $book->getId();
                     ?>
 
-                    <a class="block border bg-white" href="<?= $bookUrl ?>">
+                    <a class="book-card" href="<?= $bookUrl ?>">
                         <?php if ($bookImage !== ''): ?>
-                            <img
-                                class="h-48 w-full object-cover"
-                                src="<?= Utils::safe($bookImage) ?>"
-                                alt="Couverture de <?= $bookTitle ?>"
-                            >
+                            <img class="book-card__cover" src="<?= Utils::safe($bookImage) ?>" alt="Couverture de <?= $bookTitle ?>">
+                        <?php else: ?>
+                            <div class="book-card__empty-cover"></div>
                         <?php endif; ?>
 
-                        <div class="p-4">
-                            <h3 class="font-bold"><?= $bookTitle ?></h3>
-                            <p class="text-sm text-stone-500"><?= $bookAuthor ?></p>
-                            <p class="mt-4 text-xs text-stone-400">Vendu par : <?= $ownerUsername ?></p>
+                        <div class="book-card__body">
+                            <h3 class="text-base font-normal text-black"><?= $bookTitle ?></h3>
+                            <p class="mt-0.5 text-sm text-muted"><?= $bookAuthor ?></p>
+
+                            <div class="book-card__seller">
+                                <span class="text-[10px] italic text-muted">Vendu par :</span>
+                                <span class="text-[10px] italic text-muted"><?= $ownerUsername ?></span>
+                            </div>
+
                         </div>
                     </a>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
 
-        <div class="mt-10 text-center">
-            <a class="rounded bg-green-600 px-6 py-3 text-white" href="index.php?action=books">
+        <div class="mt-12 text-center">
+            <a class="btn btn-primary" href="index.php?action=books">
                 Voir tous les livres
             </a>
         </div>
+    </div>
+</section>
+
+<section class="home-steps">
+    <h2 class="section-title text-center">
+        Comment ça marche ?
+    </h2>
+
+    <p class="home-steps__intro">
+        Échanger des livres avec TomTroc c'est simple et amusant ! Suivez ces étapes pour commencer :
+    </p>
+
+    <div class="home-steps__grid">
+        <div class="step-card">
+            <p class="text-sm leading-relaxed text-dark">Inscrivez-vous gratuitement sur notre plateforme.</p>
+        </div>
+        <div class="step-card">
+            <p class="text-sm leading-relaxed text-dark">Ajoutez les livres que vous souhaitez échanger à votre profil.</p>
+        </div>
+        <div class="step-card">
+            <p class="text-sm leading-relaxed text-dark">Parcourez les livres disponibles chez d'autres membres.</p>
+        </div>
+        <div class="step-card">
+            <p class="text-sm leading-relaxed text-dark">Proposez un échange et discutez avec d'autres passionnés de lecture.</p>
+        </div>
+    </div>
+
+    <div class="mt-12 text-center">
+        <a class="btn btn-secondary" href="index.php?action=books">
+            Voir tous les livres
+        </a>
+    </div>
+</section>
+
+<div class="home-values-image">
+    <img src="images/values-bg.jpg" alt="">
+</div>
+
+<section class="home-values">
+    <h2 class="section-title">
+        Nos valeurs
+    </h2>
+
+    <div class="home-values__text">
+        <p>
+            Chez Tom Troc, nous mettons l'accent sur le partage, la découverte et la communauté. Nos valeurs sont ancrées dans notre passion pour les livres et notre désir de créer des liens entre les lecteurs. Nous croyons en la puissance des histoires pour rassembler les gens et inspirer des conversations enrichissantes.
+        </p>
+        <p>
+            Notre association a été fondée avec une conviction profonde : chaque livre mérite d'être lu et partagé.
+        </p>
+        <p>
+            Nous sommes passionnés par la création d'une plateforme conviviale qui permet aux lecteurs de se connecter, de partager leurs découvertes littéraires et d'échanger des livres qui attendent patiemment sur les étagères.
+        </p>
+    </div>
+</section>
+
+<section class="home-signature">
+    <div class="home-signature__inner">
+        <p class="home-signature__text">L'équipe Tom Troc</p>
+        <img class="home-signature__image" src="images/signature-tom-troc.svg" alt="Signature Tom Troc">
     </div>
 </section>

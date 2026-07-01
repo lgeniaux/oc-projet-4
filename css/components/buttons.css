@@ -1,0 +1,13 @@
+@layer components {
+    .btn {
+        @apply inline-flex items-center justify-center rounded-[10px] px-[38px] py-[22px] text-base font-semibold leading-none transition;
+    }
+
+    .btn-primary {
+        @apply bg-primary text-white hover:bg-primary/90;
+    }
+
+    .btn-secondary {
+        @apply border border-primary bg-light text-primary hover:bg-primary hover:text-white;
+    }
+}
