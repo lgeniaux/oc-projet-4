@@ -75,8 +75,8 @@
 
     <footer class="site-footer">
         <div class="site-footer__inner">
-            <a class="hover:text-primary" href="#">Politique de confidentialité</a>
-            <a class="hover:text-primary" href="#">Mentions légales</a>
+            <span>Politique de confidentialité</span>
+            <span>Mentions légales</span>
             <span>Tom Troc©</span>
             <img class="site-footer__logo" src="images/footer-logo-footer_logo.svg" alt="">
         </div>

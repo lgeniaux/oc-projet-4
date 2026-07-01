@@ -57,10 +57,6 @@ try {
             $authController = new AuthController();
             $authController->logout();
             break;
-        case 'protected-test':
-            $authController = new AuthController();
-            $authController->protectedTest();
-            break;
 
         default:
             http_response_code(404);

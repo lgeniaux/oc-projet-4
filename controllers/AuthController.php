@@ -64,12 +64,4 @@ class AuthController
         session_destroy();
         Utils::redirect('home');
     }
-
-    public function protectedTest(): void
-    {
-        AuthService::requireAuth();
-
-        $view = new View('Page protégée');
-        $view->render('protected-test');
-    }
 }
