@@ -1,8 +1,14 @@
 @layer components {
+    main:has(.auth-page) {
+        @apply bg-background;
+    }
+
     .auth-page {
         @apply grid bg-background;
         grid-template-columns: 1fr 1fr;
+        max-width: 1440px;
         min-height: 886px;
+        margin: 0 auto;
     }
 
     .auth-panel {

@@ -1,4 +1,8 @@
 @layer components {
+    main:has(.book-detail) {
+        @apply bg-background;
+    }
+
     .book-breadcrumb {
         @apply mx-auto max-w-[1140px] text-[10px] font-light leading-3 text-muted;
         height: 44px;
@@ -8,7 +12,9 @@
     .book-detail {
         @apply grid bg-background;
         grid-template-columns: 1fr 1fr;
+        max-width: 1440px;
         min-height: 863px;
+        margin: 0 auto;
     }
 
     .book-detail__image-panel {

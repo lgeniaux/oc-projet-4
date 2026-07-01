@@ -34,6 +34,9 @@ class View
         if ($activeNav === 'register') {
             $activeNav = 'login';
         }
+        if ($activeNav === 'profile') {
+            $activeNav = 'myprofile';
+        }
 
         require MAIN_VIEW_PATH;
     }

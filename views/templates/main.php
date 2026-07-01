@@ -35,7 +35,7 @@
                 </a>
 
                 <?php if (isset($_SESSION['user_id'])): ?>
-                    <a class="flex items-center gap-1.5 hover:text-primary" href="index.php?action=myprofile">
+                    <a class="flex items-center gap-1.5 <?= ($activeNav ?? '') === 'myprofile' ? 'font-semibold' : 'font-normal' ?> hover:text-primary" href="index.php?action=myprofile">
                         <svg class="h-3 w-2.5" viewBox="0 0 9 13" fill="none" stroke="currentColor" stroke-width="0.7">
                             <circle cx="4.5" cy="3" r="2.5" />
                             <path d="M0.5 12c0-3 2-5 4-5s4 2 4 5" />
