@@ -1,50 +1,59 @@
-<section class="mx-auto max-w-screen-xl px-6 py-20">
-    <div class="max-w-sm">
-        <h1 class="mb-12 text-4xl font-bold">Inscription</h1>
+<section class="auth-page auth-page--register">
+    <div class="auth-panel">
+        <h1 class="auth-title">Inscription</h1>
 
         <?php if ($error !== null): ?>
-            <p class="mb-6 text-red-600">
+            <p class="auth-error">
                 <?= Utils::safe($error) ?>
             </p>
         <?php endif; ?>
 
-        <form method="post" action="index.php?action=register">
-            <label class="mb-2 block text-stone-500" for="username">Pseudo</label>
-            <input
-                class="mb-8 w-full rounded border bg-white px-4 py-3"
-                id="username"
-                type="text"
-                name="username"
-                value="<?= Utils::safe($username) ?>"
-                required
-            >
+        <form class="auth-form" method="post" action="index.php?action=register">
+            <div class="auth-fields">
+                <div class="auth-field">
+                    <label for="username">Pseudo</label>
+                    <input
+                        id="username"
+                        type="text"
+                        name="username"
+                        value="<?= Utils::safe($username) ?>"
+                        required
+                    >
+                </div>
 
-            <label class="mb-2 block text-stone-500" for="email">Adresse email</label>
-            <input
-                class="mb-8 w-full rounded border bg-white px-4 py-3"
-                id="email"
-                type="email"
-                name="email"
-                value="<?= Utils::safe($email) ?>"
-                required
-            >
+                <div class="auth-field">
+                    <label for="email">Adresse email</label>
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        value="<?= Utils::safe($email) ?>"
+                        required
+                    >
+                </div>
 
-            <label class="mb-2 block text-stone-500" for="password">Mot de passe</label>
-            <input
-                class="mb-8 w-full rounded border bg-white px-4 py-3"
-                id="password"
-                type="password"
-                name="password"
-                required
-            >
+                <div class="auth-field">
+                    <label for="password">Mot de passe</label>
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        required
+                    >
+                </div>
+            </div>
 
-            <button class="w-full rounded bg-green-600 px-6 py-4 font-bold text-white" type="submit">
+            <button class="btn btn-primary auth-submit" type="submit">
                 S'inscrire
             </button>
         </form>
 
-        <p class="mt-8">
+        <p class="auth-switch">
             Déjà inscrit ? <a class="underline" href="index.php?action=login">Connectez-vous</a>
         </p>
+    </div>
+
+    <div class="auth-visual">
+        <img src="images/auth-visual-auth_visual.png" alt="Livres sur une étagère">
     </div>
 </section>

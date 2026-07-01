@@ -31,6 +31,9 @@ class View
         if ($activeNav === 'book') {
             $activeNav = 'books';
         }
+        if ($activeNav === 'register') {
+            $activeNav = 'login';
+        }
 
         require MAIN_VIEW_PATH;
     }

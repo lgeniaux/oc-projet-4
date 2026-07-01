@@ -1,40 +1,48 @@
-<section class="mx-auto max-w-screen-xl px-6 py-20">
-    <div class="max-w-sm">
-        <h1 class="mb-12 text-4xl font-bold">Connexion</h1>
+<section class="auth-page auth-page--login">
+    <div class="auth-panel">
+        <h1 class="auth-title">Connexion</h1>
 
         <?php if ($error !== null): ?>
-            <p class="mb-6 text-red-600">
+            <p class="auth-error">
                 <?= Utils::safe($error) ?>
             </p>
         <?php endif; ?>
 
-        <form method="post" action="index.php?action=login">
-            <label class="mb-2 block text-stone-500" for="email">Adresse email</label>
-            <input
-                class="mb-8 w-full rounded border bg-white px-4 py-3"
-                id="email"
-                type="email"
-                name="email"
-                value="<?= Utils::safe($email) ?>"
-                required
-            >
+        <form class="auth-form" method="post" action="index.php?action=login">
+            <div class="auth-fields">
+                <div class="auth-field">
+                    <label for="email">Adresse email</label>
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        value="<?= Utils::safe($email) ?>"
+                        required
+                    >
+                </div>
 
-            <label class="mb-2 block text-stone-500" for="password">Mot de passe</label>
-            <input
-                class="mb-8 w-full rounded border bg-white px-4 py-3"
-                id="password"
-                type="password"
-                name="password"
-                required
-            >
+                <div class="auth-field">
+                    <label for="password">Mot de passe</label>
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        required
+                    >
+                </div>
+            </div>
 
-            <button class="w-full rounded bg-green-600 px-6 py-4 font-bold text-white" type="submit">
+            <button class="btn btn-primary auth-submit" type="submit">
                 Se connecter
             </button>
         </form>
 
-        <p class="mt-8">
+        <p class="auth-switch">
             Pas de compte ? <a class="underline" href="index.php?action=register">Inscrivez-vous</a>
         </p>
+    </div>
+
+    <div class="auth-visual">
+        <img src="images/auth-visual-auth_visual.png" alt="Livres sur une étagère">
     </div>
 </section>

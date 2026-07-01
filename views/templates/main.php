@@ -44,7 +44,7 @@
                     </a>
                     <a class="hover:text-primary" href="index.php?action=logout">Déconnexion</a>
                 <?php else: ?>
-                    <a class="font-normal hover:text-primary" href="index.php?action=login">Connexion</a>
+                    <a class="<?= ($activeNav ?? '') === 'login' ? 'font-semibold' : 'font-normal' ?> hover:text-primary" href="index.php?action=login">Connexion</a>
                 <?php endif; ?>
             </nav>
 
