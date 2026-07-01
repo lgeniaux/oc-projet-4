@@ -27,6 +27,7 @@
                         id="password"
                         type="password"
                         name="password"
+                        autocomplete="current-password"
                         required
                     >
                 </div>

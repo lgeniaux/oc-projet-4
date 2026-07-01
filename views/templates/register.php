@@ -38,6 +38,7 @@
                         id="password"
                         type="password"
                         name="password"
+                        autocomplete="new-password"
                         required
                     >
                 </div>

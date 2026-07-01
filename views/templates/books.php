@@ -11,6 +11,7 @@
                 class="books-search__input"
                 type="search"
                 name="search"
+                aria-label="Rechercher un livre"
                 placeholder="Rechercher un livre"
                 value="<?= Utils::safe($search) ?>"
             >

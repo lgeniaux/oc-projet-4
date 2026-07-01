@@ -119,6 +119,7 @@
                 <input
                     type="text"
                     name="content"
+                    aria-label="Message"
                     placeholder="Tapez votre message ici"
                     required
                 >

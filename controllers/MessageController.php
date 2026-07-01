@@ -16,19 +16,19 @@ class MessageController
 
         if ($selectedUserId > 0) {
             if ($selectedUserId === $currentUserId) {
-                throw new Exception('Vous ne pouvez pas vous envoyer un message.');
+                Utils::redirect('messages');
             }
 
             $selectedUser = $userManager->findUserById($selectedUserId);
 
             if ($selectedUser === null) {
-                throw new Exception("L'utilisateur demandé n'existe pas.");
+                throw new NotFoundException("L'utilisateur demandé n'existe pas.");
             }
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($selectedUser === null) {
-                throw new Exception("L'utilisateur demandé n'existe pas.");
+                throw new NotFoundException("L'utilisateur demandé n'existe pas.");
             }
 
             $content = trim(Utils::request('content', ''));

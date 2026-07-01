@@ -7,14 +7,14 @@ class UserController
         $id = (int) Utils::request('id', 0);
 
         if ($id <= 0) {
-            throw new Exception("L'utilisateur demandé n'existe pas.");
+            throw new NotFoundException("L'utilisateur demandé n'existe pas.");
         }
 
         $userManager = new UserManager();
         $user = $userManager->findUserById($id);
 
         if ($user === null) {
-            throw new Exception("L'utilisateur demandé n'existe pas.");
+            throw new NotFoundException("L'utilisateur demandé n'existe pas.");
         }
 
         $bookManager = new BookManager();

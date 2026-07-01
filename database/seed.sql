@@ -20,7 +20,7 @@ VALUES
         'Esther',
         'Alabaster',
         'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80',
-        'Un roman doux à partager.',
+        'Un roman doux et lumineux, parfait pour une lecture calme le soir. Je l’ai beaucoup aimé pour son ambiance sensible et son écriture simple. Le livre est en bon état et peut facilement faire plaisir à quelqu’un qui aime les histoires intimistes.',
         'available',
         '2026-05-28 12:04:00'
     ),
@@ -29,7 +29,7 @@ VALUES
         'The Kinfolk Table',
         'Nathan Williams',
         'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80',
-        'Un beau livre autour de la cuisine et du partage.',
+        'Un beau livre autour de la cuisine, des repas partagés et des moments simples entre amis. Les photos sont très soignées et donnent envie de prendre le temps de cuisiner. Je le propose à l’échange car je l’ai déjà parcouru plusieurs fois.',
         'available',
         '2026-05-28 12:03:00'
     ),
@@ -38,7 +38,7 @@ VALUES
         'Wabi Sabi',
         'Beth Kempton',
         'https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=600&q=80',
-        'Une réflexion simple sur la beauté du quotidien.',
+        'Un livre inspirant sur la simplicité, l’imperfection et la beauté du quotidien. Il se lit facilement et donne envie de ralentir un peu. Je le conseille aux personnes qui aiment les livres calmes, poétiques et tournés vers le bien-être.',
         'available',
         '2026-05-28 12:02:00'
     ),
@@ -47,7 +47,7 @@ VALUES
         'Milk & Honey',
         'Rupi Kaur',
         'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=600&q=80',
-        'Un recueil de poésie contemporaine.',
+        'Un recueil de poésie contemporaine avec des textes courts, directs et très personnels. Certains passages sont touchants et faciles à relire. Le livre est léger, agréable à transporter et en bon état général.',
         'available',
         '2026-05-28 12:01:00'
     ),
@@ -56,7 +56,7 @@ VALUES
         'Le Petit Prince',
         'Antoine de Saint-Exupéry',
         'https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=600&q=80',
-        'Un classique tendre et poétique.',
+        'Un classique tendre et poétique que j’ai relu avec plaisir. L’histoire reste simple mais très marquante, avec beaucoup de passages connus. C’est un livre idéal à découvrir ou à offrir à quelqu’un qui aime les récits courts et symboliques.',
         'available',
         '2026-05-28 12:00:00'
     ),
@@ -65,7 +65,7 @@ VALUES
         '1984',
         'George Orwell',
         'https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=600&q=80',
-        'Un roman d’anticipation incontournable.',
+        'Un roman d’anticipation incontournable, parfois sombre mais très prenant. L’univers est fort et pousse à réfléchir sur la liberté, la surveillance et la manipulation. Je l’échange car je préfère le faire circuler plutôt que le laisser dans ma bibliothèque.',
         'available',
         '2026-05-28 11:59:00'
     ),
@@ -83,7 +83,7 @@ VALUES
         'Dune',
         'Frank Herbert',
         'https://images.unsplash.com/photo-1511108690759-009324a90311?auto=format&fit=crop&w=600&q=80',
-        'Un grand classique de science-fiction.',
+        'Un grand classique de science-fiction avec un univers très riche, entre politique, écologie et aventures. La lecture demande un peu d’attention au début, mais l’histoire devient vite passionnante. Le livre est parfait pour une personne qui veut découvrir une grande saga.',
         'available',
         '2026-05-28 11:57:00'
     ),
@@ -137,7 +137,7 @@ VALUES
         'Les Misérables',
         'Victor Hugo',
         'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80',
-        'Un grand roman populaire.',
+        'Un grand roman populaire avec des personnages très forts et une histoire qui traverse plusieurs destins. C’est une lecture assez longue, mais très marquante. Je le propose à l’échange pour quelqu’un qui veut se lancer dans un classique important.',
         'available',
         '2026-05-28 11:51:00'
     ),
@@ -163,7 +163,7 @@ VALUES
 INSERT INTO messages (sender_id, receiver_id, content)
 VALUES
     (1, 2, 'Bonjour Bob, ton livre est-il toujours disponible ?'),
-    (2, 1, 'Bonjour Alice, oui il est disponible mais je le vends 400 balles'),
+    (2, 1, 'Bonjour Alice, oui il est disponible. Nous pouvons organiser un échange.'),
     (1, 2, 'Merci pour ta réponse, je vais regarder les autres livres aussi.'),
     (2, 1, 'Pas de souci, dis-moi si un autre titre t’intéresse.'),
     (1, 2, 'Est-ce que tu es disponible cette semaine pour un échange ?'),

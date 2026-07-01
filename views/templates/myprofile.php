@@ -36,6 +36,7 @@ $yearsSinceRegistration = $now->diff($createdAt)->y;
                         type="url"
                         name="profile_image"
                         form="profileForm"
+                        aria-label="URL de la photo de profil"
                         placeholder="https://exemple.com/photo.jpg"
                         value="<?= Utils::safe($profileImage) ?>"
                     >
@@ -62,7 +63,7 @@ $yearsSinceRegistration = $now->diff($createdAt)->y;
 
                         <div class="profile-form__field">
                             <label for="password">Mot de passe</label>
-                            <input type="password" id="password" name="password" placeholder="•••••••••">
+                            <input type="password" id="password" name="password" autocomplete="new-password" placeholder="•••••••••">
                         </div>
 
                         <div class="profile-form__field">

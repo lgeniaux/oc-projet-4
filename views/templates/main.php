@@ -49,7 +49,7 @@
             </nav>
 
             <input class="mobile-menu-toggle" type="checkbox" id="mobile-menu-toggle" aria-label="Ouvrir le menu">
-            <label class="mobile-menu-button" for="mobile-menu-toggle" aria-hidden="true">
+            <label class="mobile-menu-button" for="mobile-menu-toggle">
                 <svg class="h-[15px] w-[22px]" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1 1H21M1 7.5H21M1 14H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                 </svg>

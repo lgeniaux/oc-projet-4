@@ -106,7 +106,7 @@ class AuthService
     public static function requireBookOwner(Book $book): void
     {
         if ($book->getUserId() !== (int) $_SESSION['user_id']) {
-            throw new Exception("Vous n'avez pas le droit d'agir sur ce livre.");
+            throw new NotFoundException("Le livre demandé n'existe pas.");
         }
     }
 }

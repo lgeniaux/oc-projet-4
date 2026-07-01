@@ -64,6 +64,11 @@ try {
             $view->render('not_found');
             break;
     }
+} catch (NotFoundException $exception) {
+    error_log($exception->getMessage());
+    http_response_code(404);
+    $view = new View('Page introuvable');
+    $view->render('not_found');
 } catch (Exception $exception) {
     error_log($exception->getMessage());
     http_response_code(500);
