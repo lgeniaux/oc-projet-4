@@ -46,12 +46,12 @@
                         <?php endif; ?>
 
                         <div class="book-card__body">
-                            <h3 class="text-base font-normal text-black"><?= $bookTitle ?></h3>
-                            <p class="mt-0.5 text-sm text-muted"><?= $bookAuthor ?></p>
+                            <h3 class="book-card__title"><?= $bookTitle ?></h3>
+                            <p class="book-card__author"><?= $bookAuthor ?></p>
 
                             <div class="book-card__seller">
-                                <span class="text-[10px] italic text-muted">Vendu par :</span>
-                                <span class="text-[10px] italic text-muted"><?= $ownerUsername ?></span>
+                                <span>Vendu par :</span>
+                                <span><?= $ownerUsername ?></span>
                             </div>
 
                         </div>

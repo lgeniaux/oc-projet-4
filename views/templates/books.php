@@ -1,26 +1,29 @@
-<section class="mx-auto max-w-screen-xl p-6 py-12">
-    <div class="mb-10 flex items-center justify-between gap-6">
-        <h1 class="text-3xl font-bold">Nos livres à l'échange</h1>
+<section class="books-page">
+    <div class="books-page__header">
+        <h1 class="books-page__title">Nos livres à l'échange</h1>
 
-        <form class="flex gap-2" method="get" action="index.php">
+        <form class="books-search" method="get" action="index.php">
             <input type="hidden" name="action" value="books">
+            <svg class="books-search__icon" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M8.25 14.5a6.25 6.25 0 1 0 0-12.5 6.25 6.25 0 0 0 0 12.5ZM13 13l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
+            </svg>
             <input
-                class="border bg-white px-4 py-2"
+                class="books-search__input"
                 type="search"
                 name="search"
                 placeholder="Rechercher un livre"
                 value="<?= Utils::safe($search) ?>"
             >
-            <button class="bg-green-600 px-4 py-2 text-white" type="submit">
+            <button class="books-search__submit" type="submit">
                 Rechercher
             </button>
         </form>
     </div>
 
     <?php if (empty($books)): ?>
-        <p>Aucun livre disponible pour le moment.</p>
+        <p class="books-empty">Aucun livre disponible pour le moment.</p>
     <?php else: ?>
-        <div class="grid grid-cols-4 gap-6">
+        <div class="books-grid">
             <?php foreach ($books as $book): ?>
                 <?php
                 $bookTitle = Utils::safe($book->getTitle());
@@ -30,19 +33,21 @@
                 $bookUrl = 'index.php?action=book&id=' . $book->getId();
                 ?>
 
-                <a class="block bg-white" href="<?= $bookUrl ?>">
+                <a class="book-card" href="<?= $bookUrl ?>">
                     <?php if ($bookImage !== ''): ?>
-                        <img
-                            class="h-56 w-full object-cover"
-                            src="<?= Utils::safe($bookImage) ?>"
-                            alt="Couverture de <?= $bookTitle ?>"
-                        >
+                        <img class="book-card__cover" src="<?= Utils::safe($bookImage) ?>" alt="Couverture de <?= $bookTitle ?>">
+                    <?php else: ?>
+                        <div class="book-card__empty-cover"></div>
                     <?php endif; ?>
 
-                    <div class="p-4">
-                        <h2 class="font-bold"><?= $bookTitle ?></h2>
-                        <p class="text-sm text-stone-500"><?= $bookAuthor ?></p>
-                        <p class="mt-4 text-xs text-stone-400">Vendu par : <?= $ownerUsername ?></p>
+                    <div class="book-card__body">
+                        <h2 class="book-card__title"><?= $bookTitle ?></h2>
+                        <p class="book-card__author"><?= $bookAuthor ?></p>
+
+                        <div class="book-card__seller">
+                            <span>Vendu par :</span>
+                            <span><?= $ownerUsername ?></span>
+                        </div>
                     </div>
                 </a>
             <?php endforeach; ?>

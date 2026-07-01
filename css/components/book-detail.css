@@ -1,0 +1,124 @@
+@layer components {
+    .book-breadcrumb {
+        @apply mx-auto max-w-[1140px] text-[10px] font-light leading-3 text-muted;
+        height: 44px;
+        padding-top: 16px;
+    }
+
+    .book-detail {
+        @apply grid bg-background;
+        grid-template-columns: 1fr 1fr;
+        min-height: 863px;
+    }
+
+    .book-detail__image-panel {
+        @apply bg-[#D9D9D9];
+        height: 863px;
+    }
+
+    .book-detail__image {
+        @apply h-full w-full object-cover;
+    }
+
+    .book-detail__content {
+        width: 485px;
+        margin-left: 85px;
+        padding-top: 55px;
+    }
+
+    .book-detail__title {
+        @apply font-display text-4xl font-normal leading-[1.33] text-black;
+    }
+
+    .book-detail__author {
+        @apply mt-3 text-base text-muted;
+    }
+
+    .book-detail__rule {
+        @apply bg-muted;
+        width: 27px;
+        height: 1px;
+        margin-top: 29px;
+    }
+
+    .book-detail__label {
+        @apply text-[8px] font-semibold uppercase leading-[10px] tracking-[0.08em] text-dark;
+    }
+
+    .book-detail__description-label {
+        margin-top: 31px;
+    }
+
+    .book-detail__description {
+        @apply mt-4 text-sm leading-[1.31] text-dark;
+        min-height: 289px;
+    }
+
+    .book-detail__owner-label {
+        margin-top: 30px;
+    }
+
+    .book-owner-pill {
+        @apply mt-4 inline-flex items-center rounded-full bg-white py-1.5 pl-1.5 pr-[17px] text-sm text-dark;
+        gap: 12px;
+    }
+
+    .book-owner-pill__avatar {
+        @apply flex h-12 w-12 items-center justify-center rounded-full bg-[#D9D9D9] text-sm font-semibold text-muted;
+    }
+
+    .book-detail__cta {
+        @apply mt-[80px] w-full;
+    }
+
+    @media (max-width: 767px) {
+        .book-breadcrumb {
+            @apply hidden;
+        }
+
+        .book-detail {
+            display: block;
+            min-height: 1346px;
+        }
+
+        .book-detail__image-panel {
+            height: 449px;
+        }
+
+        .book-detail__content {
+            width: auto;
+            margin-left: 0;
+            padding: 40px 20px 0;
+        }
+
+        .book-detail__title {
+            font-size: 30px;
+            line-height: 40px;
+        }
+
+        .book-detail__author {
+            margin-top: 40px;
+        }
+
+        .book-detail__rule {
+            margin-top: 32px;
+        }
+
+        .book-detail__description-label {
+            margin-top: 31px;
+        }
+
+        .book-detail__description {
+            width: 334px;
+            min-height: 357px;
+        }
+
+        .book-detail__owner-label {
+            margin-top: 40px;
+        }
+
+        .book-detail__cta {
+            margin-top: 40px;
+        }
+    }
+}

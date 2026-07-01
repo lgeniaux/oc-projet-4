@@ -28,6 +28,9 @@ class View
         $title = $this->title;
         $unreadMessagesCount = $this->unreadMessagesCount;
         $activeNav = Utils::request('action', 'home');
+        if ($activeNav === 'book') {
+            $activeNav = 'books';
+        }
 
         require MAIN_VIEW_PATH;
     }

@@ -49,36 +49,6 @@
         margin-top: 80px;
     }
 
-    .book-card {
-        @apply block overflow-hidden bg-white transition;
-        width: 200px;
-        height: 324px;
-        border-radius: 0 0 10px 10px;
-    }
-
-    .book-card__cover {
-        @apply w-full object-cover;
-        height: 200px;
-    }
-
-    .book-card__empty-cover {
-        @apply w-full bg-light;
-        height: 200px;
-    }
-
-    .book-card__body {
-        background: white;
-        border-radius: 0 0 10px 10px;
-        display: flex;
-        flex-direction: column;
-        height: 124px;
-        padding: 20px 14px 23px;
-    }
-
-    .book-card__seller {
-        @apply mt-auto flex items-center gap-1;
-    }
-
     .home-steps {
         @apply mx-auto max-w-[1140px] px-0 text-center;
         padding: 80px 0 86px;
@@ -183,21 +153,6 @@
             grid-template-columns: repeat(2, 160px);
             gap: 16px 15px;
             margin-top: 34px;
-        }
-
-        .book-card {
-            width: 160px;
-            height: 259px;
-        }
-
-        .book-card__cover,
-        .book-card__empty-cover {
-            height: 160px;
-        }
-
-        .book-card__body {
-            height: 99px;
-            padding: 16px 11px 14px;
         }
 
         .home-steps {
