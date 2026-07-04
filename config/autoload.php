@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Charge automatiquement les classes du projet depuis leurs dossiers.
+ * @param string $className : le nom de la classe demandée.
+ * @return void
+ */
 spl_autoload_register(function (string $className) {
     $folders = [
         'controllers/',

@@ -4,11 +4,19 @@ class BookManager
 {
     private PDO $db;
 
+    /**
+     * Initialise le manager avec la connexion à la base de données.
+     */
     public function __construct()
     {
         $this->db = DBManager::getConnection();
     }
 
+    /**
+     * Récupère les derniers livres disponibles.
+     * @param int $limit : le nombre maximum de livres à retourner.
+     * @return array : la liste des livres.
+     */
     public function findLatestAvailableBooks(int $limit = 4): array
     {
         $sql = 'SELECT books.id, books.user_id, books.title, books.author, books.image,
@@ -26,6 +34,10 @@ class BookManager
         return $this->hydrateBooks($query->fetchAll());
     }
 
+    /**
+     * Récupère tous les livres disponibles.
+     * @return array : la liste des livres disponibles.
+     */
     public function findAvailableBooks(): array
     {
         $sql = 'SELECT books.id, books.user_id, books.title, books.author, books.image,
@@ -41,6 +53,11 @@ class BookManager
         return $this->hydrateBooks($query->fetchAll());
     }
 
+    /**
+     * Recherche les livres disponibles par titre.
+     * @param string $search : le texte recherché.
+     * @return array : la liste des livres trouvés.
+     */
     public function searchAvailableBooksByTitle(string $search): array
     {
         $sql = 'SELECT books.id, books.user_id, books.title, books.author, books.image,
@@ -59,6 +76,11 @@ class BookManager
         return $this->hydrateBooks($query->fetchAll());
     }
 
+    /**
+     * Récupère un livre par son identifiant.
+     * @param int $id : l'identifiant du livre.
+     * @return Book|null : le livre trouvé ou null.
+     */
     public function findBookById(int $id): ?Book
     {
         $sql = 'SELECT books.id, books.user_id, books.title, books.author, books.image,
@@ -81,6 +103,11 @@ class BookManager
         return $this->hydrateBook($bookData);
     }
 
+    /**
+     * Récupère les livres d'un utilisateur.
+     * @param int $userId : l'identifiant de l'utilisateur.
+     * @return array : la liste des livres.
+     */
     public function findBooksByUserId(int $userId): array
     {
         $sql = 'SELECT books.id, books.user_id, books.title, books.author, books.image,
@@ -98,6 +125,11 @@ class BookManager
         return $this->hydrateBooks($query->fetchAll());
     }
 
+    /**
+     * Compte les livres d'un utilisateur.
+     * @param int $userId : l'identifiant de l'utilisateur.
+     * @return int : le nombre de livres.
+     */
     public function countBooksByUserId(int $userId): int
     {
         $sql = 'SELECT COUNT(*) FROM books WHERE user_id = :user_id';
@@ -110,6 +142,16 @@ class BookManager
         return (int) $query->fetchColumn();
     }
 
+    /**
+     * Crée un livre dans la bibliothèque d'un utilisateur.
+     * @param int $userId : l'identifiant du propriétaire.
+     * @param string $title : le titre du livre.
+     * @param string $author : l'auteur du livre.
+     * @param string $image : l'URL de l'image.
+     * @param string $description : la description du livre.
+     * @param string $status : le statut de disponibilité.
+     * @return int : l'identifiant du livre créé.
+     */
     public function createBook(
         int $userId,
         string $title,
@@ -134,6 +176,16 @@ class BookManager
         return (int) $this->db->lastInsertId();
     }
 
+    /**
+     * Met à jour les informations d'un livre.
+     * @param int $id : l'identifiant du livre.
+     * @param string $title : le titre du livre.
+     * @param string $author : l'auteur du livre.
+     * @param string $image : l'URL de l'image.
+     * @param string $description : la description du livre.
+     * @param string $status : le statut de disponibilité.
+     * @return void
+     */
     public function updateBook(
         int $id,
         string $title,
@@ -162,6 +214,11 @@ class BookManager
         ]);
     }
 
+    /**
+     * Supprime un livre par son identifiant.
+     * @param int $id : l'identifiant du livre.
+     * @return void
+     */
     public function deleteBook(int $id): void
     {
         $sql = 'DELETE FROM books WHERE id = :id';
@@ -172,6 +229,11 @@ class BookManager
         ]);
     }
 
+    /**
+     * Transforme des lignes SQL en objets Book.
+     * @param array $booksData : les lignes retournées par la base.
+     * @return array : la liste des livres hydratés.
+     */
     private function hydrateBooks(array $booksData): array
     {
         $books = [];
@@ -183,6 +245,11 @@ class BookManager
         return $books;
     }
 
+    /**
+     * Transforme une ligne SQL en objet Book.
+     * @param array $bookData : les données du livre.
+     * @return Book : le livre hydraté.
+     */
     private function hydrateBook(array $bookData): Book
     {
         return new Book(

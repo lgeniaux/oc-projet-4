@@ -2,6 +2,10 @@
 
 class UserController
 {
+    /**
+     * Affiche le profil public d'un utilisateur.
+     * @return void
+     */
     public function showProfile(): void
     {
         $id = (int) Utils::request('id', 0);
@@ -29,6 +33,10 @@ class UserController
         ]);
     }
 
+    /**
+     * Affiche et traite la page du compte de l'utilisateur connecté.
+     * @return void
+     */
     public function showMyProfile(): void
     {
         AuthService::requireAuth();

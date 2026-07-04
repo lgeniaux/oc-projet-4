@@ -5,12 +5,22 @@ class View
     private string $title;
     private int $unreadMessagesCount;
 
+    /**
+     * Initialise une vue avec son titre et les données communes du layout.
+     * @param string $title : le titre de la page.
+     */
     public function __construct(string $title)
     {
         $this->title = $title;
         $this->unreadMessagesCount = MessageService::countUnreadMessagesForCurrentUser();
     }
 
+    /**
+     * Rend un template dans le layout principal.
+     * @param string $viewName : le nom du template à afficher.
+     * @param array $params : les variables disponibles dans le template.
+     * @return void
+     */
     public function render(string $viewName, array $params = []): void
     {
         $viewPath = TEMPLATE_VIEW_PATH . $viewName . '.php';

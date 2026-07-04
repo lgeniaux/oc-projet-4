@@ -4,6 +4,10 @@ class DBManager
 {
     private static ?PDO $connection = null;
 
+    /**
+     * Retourne la connexion PDO partagée à la base de données.
+     * @return PDO : la connexion active.
+     */
     public static function getConnection(): PDO
     {
         if (self::$connection === null) {
@@ -13,6 +17,10 @@ class DBManager
         return self::$connection;
     }
 
+    /**
+     * Crée une connexion PDO à partir des variables d'environnement.
+     * @return PDO : la nouvelle connexion.
+     */
     private static function createConnection(): PDO
     {
         $host = getenv('DB_HOST');

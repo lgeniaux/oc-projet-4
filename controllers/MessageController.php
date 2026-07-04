@@ -2,6 +2,10 @@
 
 class MessageController
 {
+    /**
+     * Affiche la messagerie et traite l'envoi d'un message.
+     * @return void
+     */
     public function showMessages(): void
     {
         AuthService::requireAuth();

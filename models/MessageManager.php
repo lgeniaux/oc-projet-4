@@ -4,11 +4,19 @@ class MessageManager
 {
     private PDO $db;
 
+    /**
+     * Initialise le manager avec la connexion à la base de données.
+     */
     public function __construct()
     {
         $this->db = DBManager::getConnection();
     }
 
+    /**
+     * Récupère les conversations d'un utilisateur.
+     * @param int $userId : l'identifiant de l'utilisateur.
+     * @return array : la liste des conversations.
+     */
     public function findConversationsByUserId(int $userId): array
     {
         $sql = <<<'SQL'
@@ -66,6 +74,12 @@ class MessageManager
         return $query->fetchAll();
     }
 
+    /**
+     * Récupère les messages échangés entre deux utilisateurs.
+     * @param int $firstUserId : l'identifiant du premier utilisateur.
+     * @param int $secondUserId : l'identifiant du second utilisateur.
+     * @return array : la liste des messages.
+     */
     public function findMessagesBetweenUsers(int $firstUserId, int $secondUserId): array
     {
         $sql = 'SELECT id, sender_id, receiver_id, content, is_read, created_at
@@ -85,6 +99,13 @@ class MessageManager
         return $this->hydrateMessages($query->fetchAll());
     }
 
+    /**
+     * Crée un message entre deux utilisateurs.
+     * @param int $senderId : l'identifiant de l'expéditeur.
+     * @param int $receiverId : l'identifiant du destinataire.
+     * @param string $content : le contenu du message.
+     * @return void
+     */
     public function createMessage(int $senderId, int $receiverId, string $content): void
     {
         $sql = 'INSERT INTO messages (sender_id, receiver_id, content)
@@ -98,6 +119,12 @@ class MessageManager
         ]);
     }
 
+    /**
+     * Marque comme lus les messages reçus dans une conversation.
+     * @param int $currentUserId : l'utilisateur connecté.
+     * @param int $otherUserId : l'autre utilisateur de la conversation.
+     * @return void
+     */
     public function markMessagesAsRead(int $currentUserId, int $otherUserId): void
     {
         $sql = 'UPDATE messages
@@ -113,6 +140,11 @@ class MessageManager
         ]);
     }
 
+    /**
+     * Compte les messages non lus d'un utilisateur.
+     * @param int $userId : l'identifiant de l'utilisateur.
+     * @return int : le nombre de messages non lus.
+     */
     public function countUnreadMessages(int $userId): int
     {
         $sql = 'SELECT COUNT(*)
@@ -128,6 +160,11 @@ class MessageManager
         return (int) $query->fetchColumn();
     }
 
+    /**
+     * Transforme des lignes SQL en objets Message.
+     * @param array $messagesData : les lignes retournées par la base.
+     * @return array : la liste des messages hydratés.
+     */
     private function hydrateMessages(array $messagesData): array
     {
         $messages = [];
