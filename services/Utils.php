@@ -14,6 +14,62 @@ class Utils
     }
 
     /**
+     * Retourne le token CSRF de la session ou en génère un nouveau.
+     * @return string : le token CSRF courant.
+     */
+    public static function csrfToken(): string
+    {
+        if (!isset($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+
+        return $_SESSION['csrf_token'];
+    }
+
+    /**
+     * Génère le champ caché CSRF à placer dans les formulaires POST.
+     * @return string : le champ HTML contenant le token CSRF.
+     */
+    public static function csrfInput(): string
+    {
+        return '<input type="hidden" name="csrf_token" value="' . self::safe(self::csrfToken()) . '">';
+    }
+
+    /**
+     * Vérifie que le token CSRF reçu correspond à celui de la session.
+     * @param mixed $token : le token reçu depuis le formulaire.
+     * @return bool : true si le token est valide.
+     */
+    public static function isValidCsrfToken(mixed $token): bool
+    {
+        if (!isset($_SESSION['csrf_token']) || !is_string($token)) {
+            return false;
+        }
+
+        return hash_equals($_SESSION['csrf_token'], $token);
+    }
+
+    /**
+     * Indique si une URL d'image est vide ou utilisable par l'application.
+     * @param string $url : l'URL à contrôler.
+     * @return bool : true si l'URL est vide ou valide en http/https.
+     */
+    public static function isValidImageUrl(string $url): bool
+    {
+        if ($url === '') {
+            return true;
+        }
+
+        if (strlen($url) > 255 || !filter_var($url, FILTER_VALIDATE_URL)) {
+            return false;
+        }
+
+        $scheme = strtolower((string) parse_url($url, PHP_URL_SCHEME));
+
+        return in_array($scheme, ['http', 'https'], true);
+    }
+
+    /**
      * Redirige vers une action.
      * @param string $action : l'action (correspond aux routes dans index.php).
      * @param array $params : paramètres supplémentaires ['cle' => 'valeur'].

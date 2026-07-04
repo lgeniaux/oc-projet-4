@@ -265,8 +265,14 @@
         @apply flex gap-7;
     }
 
-    .profile-actions a {
+    .profile-actions a,
+    .profile-actions button {
         @apply underline;
+    }
+
+    .profile-actions button {
+        @apply cursor-pointer bg-transparent p-0 text-inherit;
+        font: inherit;
     }
 
     .profile-actions__delete {

@@ -58,6 +58,12 @@
         white-space: nowrap;
     }
 
+    .site-nav-right button,
+    .mobile-nav button {
+        @apply cursor-pointer bg-transparent p-0 text-inherit;
+        font: inherit;
+    }
+
     .mobile-menu-toggle,
     .mobile-menu-button,
     .mobile-nav {

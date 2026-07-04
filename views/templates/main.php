@@ -42,7 +42,10 @@
                         </svg>
                         <span>Mon compte</span>
                     </a>
-                    <a class="hover:text-primary" href="index.php?action=logout">Déconnexion</a>
+                    <form method="post" action="index.php?action=logout">
+                        <?= Utils::csrfInput() ?>
+                        <button class="hover:text-primary" type="submit">Déconnexion</button>
+                    </form>
                 <?php else: ?>
                     <a class="<?= ($activeNav ?? '') === 'login' ? 'font-semibold' : 'font-normal' ?> hover:text-primary" href="index.php?action=login">Connexion</a>
                 <?php endif; ?>
@@ -61,7 +64,10 @@
                 <a class="<?= ($activeNav ?? '') === 'messages' ? 'font-semibold' : 'font-normal' ?> hover:text-primary" href="index.php?action=messages">Messagerie</a>
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <a class="hover:text-primary" href="index.php?action=myprofile">Mon compte</a>
-                    <a class="hover:text-primary" href="index.php?action=logout">Déconnexion</a>
+                    <form method="post" action="index.php?action=logout">
+                        <?= Utils::csrfInput() ?>
+                        <button class="hover:text-primary" type="submit">Déconnexion</button>
+                    </form>
                 <?php else: ?>
                     <a class="hover:text-primary" href="index.php?action=login">Connexion</a>
                 <?php endif; ?>

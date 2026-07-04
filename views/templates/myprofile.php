@@ -55,6 +55,8 @@ $yearsSinceRegistration = $now->diff($createdAt)->y;
                 <h2 class="profile-info-title">Vos informations personnelles</h2>
 
                 <form id="profileForm" class="profile-form" method="post" action="index.php?action=myprofile">
+                    <?= Utils::csrfInput() ?>
+
                     <div class="profile-form__fields">
                         <div class="profile-form__field">
                             <label for="email">Adresse email</label>
@@ -106,7 +108,6 @@ $yearsSinceRegistration = $now->diff($createdAt)->y;
                             $bookDescription = Utils::safe((string) $book->getDescription());
                             $bookImage = trim((string) $book->getImage());
                             $isAvailable = $book->isAvailable();
-                            $deleteUrl = 'index.php?action=delete-book&id=' . $book->getId();
                             ?>
                             <tr>
                                 <td class="profile-table__photo">
@@ -125,10 +126,13 @@ $yearsSinceRegistration = $now->diff($createdAt)->y;
                                     </span>
                                 </td>
                                 <td class="profile-table__action">
-                                    <span class="profile-actions">
+                                    <div class="profile-actions">
                                         <a href="index.php?action=edit-book&id=<?= $book->getId() ?>">Éditer</a>
-                                        <a class="profile-actions__delete" href="<?= $deleteUrl ?>">Supprimer</a>
-                                    </span>
+                                        <form method="post" action="index.php?action=delete-book&id=<?= $book->getId() ?>">
+                                            <?= Utils::csrfInput() ?>
+                                            <button class="profile-actions__delete" type="submit">Supprimer</button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

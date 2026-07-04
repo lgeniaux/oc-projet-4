@@ -9,6 +9,8 @@
         <?php endif; ?>
 
         <form class="auth-form" method="post" action="index.php?action=register">
+            <?= Utils::csrfInput() ?>
+
             <div class="auth-fields">
                 <div class="auth-field">
                     <label for="username">Pseudo</label>

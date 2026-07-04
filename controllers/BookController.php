@@ -2,6 +2,10 @@
 
 class BookController
 {
+    /**
+     * Affiche la liste des livres disponibles, avec recherche optionnelle.
+     * @return void
+     */
     public function showBooks(): void
     {
         $search = trim(Utils::request('search', ''));
@@ -21,6 +25,10 @@ class BookController
         ]);
     }
 
+    /**
+     * Affiche la fiche détaillée d'un livre.
+     * @return void
+     */
     public function showBook(): void
     {
         $id = (int) Utils::request('id', 0);
@@ -42,9 +50,17 @@ class BookController
         ]);
     }
 
+    /**
+     * Supprime un livre appartenant à l'utilisateur connecté.
+     * @return void
+     */
     public function deleteBook(): void
     {
         AuthService::requireAuth();
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            Utils::redirect('myprofile');
+        }
 
         $id = (int) Utils::request('id', 0);
 
@@ -66,6 +82,10 @@ class BookController
         Utils::redirect('myprofile');
     }
 
+    /**
+     * Affiche et traite le formulaire d'ajout d'un livre.
+     * @return void
+     */
     public function addBook(): void
     {
         AuthService::requireAuth();
@@ -89,6 +109,8 @@ class BookController
 
             if ($title === '' || $author === '') {
                 $error = 'Le titre et l\'auteur sont obligatoires.';
+            } elseif (!Utils::isValidImageUrl($image)) {
+                $error = 'L\'URL de l\'image doit être une adresse http ou https valide.';
             } elseif (!in_array($status, ['available', 'unavailable'], true)) {
                 $error = 'Le statut choisi est invalide.';
             } else {
@@ -108,6 +130,10 @@ class BookController
         ]);
     }
 
+    /**
+     * Affiche et traite le formulaire de modification d'un livre.
+     * @return void
+     */
     public function editBook(): void
     {
         AuthService::requireAuth();
@@ -146,6 +172,8 @@ class BookController
 
             if ($title === '' || $author === '') {
                 $error = 'Le titre et l\'auteur sont obligatoires.';
+            } elseif (!Utils::isValidImageUrl($image)) {
+                $error = 'L\'URL de l\'image doit être une adresse http ou https valide.';
             } elseif (!in_array($status, ['available', 'unavailable'], true)) {
                 $error = 'Le statut choisi est invalide.';
             } else {

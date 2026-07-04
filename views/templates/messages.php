@@ -116,6 +116,8 @@
             </div>
 
             <form class="messages-compose" method="post" action="index.php?action=messages&user=<?= $selectedUser->getId() ?>">
+                <?= Utils::csrfInput() ?>
+
                 <input
                     type="text"
                     name="content"

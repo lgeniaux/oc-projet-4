@@ -8,6 +8,13 @@ require_once 'config/autoload.php';
 $action = Utils::request('action', 'home');
 
 try {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && !Utils::isValidCsrfToken(Utils::request('csrf_token'))) {
+        http_response_code(403);
+        $view = new View('Accès refusé');
+        $view->render('error');
+        exit();
+    }
+
     switch ($action) {
         case 'home':
             $homeController = new HomeController();

@@ -460,6 +460,13 @@
     gap: 56px;
     white-space: nowrap;
   }
+  .site-nav-right button, .mobile-nav button {
+    cursor: pointer;
+    background-color: transparent;
+    padding: calc(var(--spacing) * 0);
+    color: inherit;
+    font: inherit;
+  }
   .mobile-menu-toggle, .mobile-menu-button, .mobile-nav {
     display: none;
   }
@@ -1614,8 +1621,15 @@
     display: flex;
     gap: calc(var(--spacing) * 7);
   }
-  .profile-actions a {
+  .profile-actions a, .profile-actions button {
     text-decoration-line: underline;
+  }
+  .profile-actions button {
+    cursor: pointer;
+    background-color: transparent;
+    padding: calc(var(--spacing) * 0);
+    color: inherit;
+    font: inherit;
   }
   .profile-actions__delete {
     color: #CB2D2D;

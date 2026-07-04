@@ -19,6 +19,8 @@ $statusValue = $formValues['status'];
         <?php endif; ?>
 
         <form method="post" action="<?= Utils::safe($formAction) ?>" class="book-form-panel">
+            <?= Utils::csrfInput() ?>
+
             <div class="book-form-grid">
                 <div class="book-form-photo">
                     <label class="book-form-label" for="image">Photo</label>

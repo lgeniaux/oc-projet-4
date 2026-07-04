@@ -2,6 +2,10 @@
 
 class AuthController
 {
+    /**
+     * Affiche et traite le formulaire de connexion.
+     * @return void
+     */
     public function showLogin(): void
     {
         $error = null;
@@ -29,6 +33,10 @@ class AuthController
         ]);
     }
 
+    /**
+     * Affiche et traite le formulaire d'inscription.
+     * @return void
+     */
     public function showRegister(): void
     {
         $error = null;
@@ -59,8 +67,16 @@ class AuthController
         ]);
     }
 
+    /**
+     * Déconnecte l'utilisateur connecté.
+     * @return void
+     */
     public function logout(): void
     {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            Utils::redirect('home');
+        }
+
         session_destroy();
         Utils::redirect('home');
     }
